@@ -1,0 +1,8 @@
+12:34:37 ip: 127.0.0.1 | uid:  Base: test alert
+12:36:28 ip: 127.0.0.1 | uid:  Base: test alert
+15:42:26 ip: 127.0.0.1 | uid:  Base: unknown method content; args: a:0:{}
+16:32:59 ip: 127.0.0.1 | uid:  Page: unknown method content; args: a:0:{}
+16:34:43 ip: 127.0.0.1 | uid:  Page: unknown method content; args: a:0:{}
+16:35:10 ip: 127.0.0.1 | uid:  Page: unknown method content; args: a:0:{}
+16:37:01 ip: 127.0.0.1 | uid:  Page: unknown method content; args: a:0:{}
+16:37:51 ip: 127.0.0.1 | uid:  Page: unknown method content; args: a:0:{}
