@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/system/logdir
+/system/logdir/**
 
 # production
 #/build
