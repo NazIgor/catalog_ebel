@@ -2,7 +2,7 @@ import { useHttp } from "../useHTTP/http.hook";
 
 const useConnectServer=()=>{
     const {loading, request, error, clearError}=useHttp();
-    const _baseURL='http://catalog.ho.lc/index.php';
+    const _baseURL='http://ebel.lc/index.php';
 
     const postData=async(body, url=_baseURL, method="POST",headers = {'Content-Type': 'application/json'})=>{
         console.log(body, url, method, headers);
