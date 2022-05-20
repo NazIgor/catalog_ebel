@@ -16,6 +16,7 @@
                                       -> execute();
             foreach($list_file as $path)
             {
+                if (substr($path, -3) == 'txt' OR substr($path, -3) == 'map') continue;
                 switch($type[0])
                 {
                     case "css":
