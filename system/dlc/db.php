@@ -1,11 +1,8 @@
 <?php defined('DOCROOT') OR die('No direct script access.');
 	/*
-	#
-	#  project: "salon"
-	#  file: db.php
-	#  date: 06.12.2020
+	#  project: "ebel"
+	#  date: 22.05.2022
 	#  author: Medvedev Alexandr
-	#
 	*/
 	
 	class db
