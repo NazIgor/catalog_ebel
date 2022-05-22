@@ -15,9 +15,33 @@
 
         public function action($data)
         {
-            $this -> cout(Main :: $obj -> db()
-                                       -> read('locale')
-                                       -> execute());
+            $loc = Main :: $obj -> db()
+                                -> read('locale')
+                                -> execute();
+
+            $res = Array();
+
+            $res['languages'] = Array();
+
+            $flag = TRUE;
+
+            foreach ($loc as $el)
+            {
+                $res[$el['name']] = $el;
+                unset($res[$el['name']]['id']);
+                unset($res[$el['name']]['name']);
+                if ($flag)
+                {
+                    foreach($res[$el['name']] as $key => $value)
+                    {
+                        $res['languages'][] = $key;
+                    }
+                    $flag = FALSE;
+                }
+            }
+
+            $this -> cout($res);
+
         }
 	}	
 ?>
