@@ -5,7 +5,8 @@ const MainPage=()=>{
     const {error, postData}=useConnectServer();
 
     useEffect(()=>{
-        postData({testData:{btn1:22, btn2:333}})
+        
+        postData({getlocale:''})
                 .then(data=>{
                     console.log(data);
                 })
@@ -15,6 +16,8 @@ const MainPage=()=>{
                 })
                 // eslint-disable-next-line
     },[])
+
+
     return (
         <div className="main-page">
             <h3>Основная страница</h3>
