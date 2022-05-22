@@ -1,0 +1,14 @@
+@import '/src/style/var';
+
+.header-link{
+    
+    padding: 3px;
+    margin-bottom: 25px;
+    &_item{
+        display: inline;
+        margin-left: 10px;
+        a{
+            color:$bodyTextColor;
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import './var';
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+
+    background-color: $bodyBackgroundColor;
+    color: $bodyTextColor;
+}
