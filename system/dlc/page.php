@@ -18,6 +18,7 @@
 
         public function action($path)
         {
+            $path = 'base';
 
             $page = Main :: factory('page', $path);
 
