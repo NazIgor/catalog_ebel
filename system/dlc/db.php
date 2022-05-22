@@ -26,7 +26,7 @@
             -> cache()
             -> get(__CLASS__);
 
-			$obj -> db = new mysqli('localhost',  'salon',  'P@$$w0rd', 'dump_salon');
+			$obj -> db = new mysqli('localhost',  'ebel',  'ebel', 'ebel');
 
             if ($obj -> db -> connect_error)
             {
