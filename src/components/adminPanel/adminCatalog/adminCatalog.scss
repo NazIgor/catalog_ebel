@@ -12,6 +12,8 @@
         list-style: none;
         margin: 0;
         padding: 0;
+
+        margin-bottom: 40px;
     }
     & li{
         cursor: pointer;
@@ -49,5 +51,26 @@
         display: flex;
         justify-content: space-around;
         margin-top: 20px;
+    }
+    & .addCat{
+        position: absolute;
+        bottom: 0;
+        
+        &-input{
+            width: 70%;
+            height: 30px;
+
+            font-size: 1.1em;
+        }
+        &-btn{
+            width: 150px;
+            height: 40px;
+        }
+    }
+    & .left{
+        right:150px;
+    }
+    & .right{
+        left:250px;
     }
 }

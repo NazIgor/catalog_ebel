@@ -35,6 +35,10 @@ const AdminCatalog=()=>{
                             <div className="item">Соседская <img src={deleteImg} alt="delete" /></div>
                         </li>
                     </ul>
+                    <div className="addCat right">
+                        <input type="text" placeholder='Input Catalog' className='addCat-input'/>
+                        <button className='addCat-btn'>Add Catalog</button>
+                    </div>
                 </div>
                 <div className="admin-catalog-data_left">
                     <h4>Подкаталоги:</h4>
@@ -49,6 +53,10 @@ const AdminCatalog=()=>{
                             <div className="item">Тумбочка <img src={deleteImg} alt="delete" /></div>
                         </li>
                     </ul>
+                    <div className="addCat left">
+                        <input type="text" placeholder='Input Sub Catalog' className='addCat-input'/>
+                        <button className='addCat-btn'>Add subCatalog</button>
+                    </div>
                 </div>
             </div>
         </div>
