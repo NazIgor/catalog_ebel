@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 22, 2022 at 02:16 PM
--- Server version: 10.7.3-MariaDB
--- PHP Version: 8.1.3
+-- Хост: 127.0.0.1:3306
+-- Время создания: Май 23 2022 г., 09:50
+-- Версия сервера: 5.7.33
+-- Версия PHP: 8.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ebel`
+-- База данных: `ebel`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `locale`
+-- Структура таблицы `locale`
 --
 
 CREATE TABLE `locale` (
@@ -36,32 +36,36 @@ CREATE TABLE `locale` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `locale`
+-- Дамп данных таблицы `locale`
 --
 
 INSERT INTO `locale` (`id`, `name`, `ru`, `en`, `kz`) VALUES
 (1, 'button_send', 'отправить', 'send', 'алга'),
-(2, 'button_cancel', 'отмена', 'cancel', 'кетнахуй');
+(2, 'button-cancel', 'отмена', 'cancel', 'кетнахуй'),
+(3, 'btn_addUI', 'UI элемент', 'UI elements', 'UI чего-то'),
+(4, 'btn_main', 'Главная', 'Main', 'Баска'),
+(5, 'btn_catalog', 'Каталог', 'Catalog', 'Котолог'),
+(7, 'lb_add', 'Добавить', 'Add', 'Бер (наверно))');
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `locale`
+-- Индексы таблицы `locale`
 --
 ALTER TABLE `locale`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `locale`
+-- AUTO_INCREMENT для таблицы `locale`
 --
 ALTER TABLE `locale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
