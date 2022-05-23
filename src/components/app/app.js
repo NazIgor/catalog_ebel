@@ -49,7 +49,7 @@ const App=()=>{
                             <Route and path="/admin-panel" 
                                    element={<AdminPanel lang={lang} langs={langs} uiData={uiData}/>}/>
                             <Route and path="/add-page" 
-                                   element={<AddPage langs={langs} />}/>
+                                   element={<AddPage lang={lang} langs={langs} uiData={uiData}/>}/>
                         </Routes>
                 </main>
             </Router>

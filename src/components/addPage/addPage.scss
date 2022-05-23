@@ -3,14 +3,17 @@
     height: 100%;
     & input{
        width: 80%; 
+       height: 45px;
        margin-top: 5px;
 
        font-size: 1.2em;
+
+       border-radius: 3px;
+       border: solid 1px #8e8e8e;
     }
     & button{
         margin-top: 15px;
         width: 150px;
         height: 40px;
-    }
-    
+    }    
 }

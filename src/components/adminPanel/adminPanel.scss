@@ -1,0 +1,12 @@
+@import '/src/style/var';
+
+.admin-panel{
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    background-color: $adminBackgroundColor;
+}
+.admin-container{
+    padding: 15px;
+}

@@ -1,12 +1,18 @@
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+
 import useConnectServer from "../../services/connect/connect";
 import ErrorLoading from "../errorLoading/errorLoading";
 import { Spinner } from "../spinner/spinner";
+import AdminSide from "./adminSide/adminSide";
+import AddPage from "../addPage/addPage";
+
+import './adminPanel.scss';
 
 const AdminPanel=(props)=>{
     
     const [lang, setLang]=useState(props.lang),
+          [target, setTarget]=useState('start'),
           {postData, clearError, error, loading}=useConnectServer(),
           [uidata, setUIData]=useState(null);
 
@@ -27,24 +33,40 @@ const AdminPanel=(props)=>{
                 })
                 .catch(e=>console.log('error get data from server: ',e));
     }
-    const View=()=>{
-        if(uidata){
-            return (
-                <div className="admin-container">
-                    <h3>Админ панель!</h3>
-                    <h5>Сначала залогинься</h5>
-                    <NavLink to="/">Перейти на главную страницу  {uidata.button_send[lang]}</NavLink>
-                </div>
-            )
-        } else {return null}
+    const setContent=()=>{
+        switch (target){
+            case 'ui':
+                return (
+                    <div className="admin-container">
+                        <AddPage lang={props.lang} langs={props.langs} uiData={props.uiData.Getlocale}/>
+                    </div>
+                );
+            case 'start':
+                return <StartContent/>;
+            default: return null;
+        }
+    }
+    const StartContent=()=>{
+        return (
+            <div className="admin-container">
+                <h3>Админ панель!</h3>
+                <h5>Сначала залогинься</h5>
+                <NavLink to="/">Перейти на главную страницу  {uidata.button_send[lang]}</NavLink>
+            </div>
+        )
+    }
+    const contentChange=(e)=>{
+        const target=e.target.getAttribute('data-target');
+        setTarget(target);
     }
     const errorContent=error?<ErrorLoading/>:null,
           loadinContet=loading && !error?<Spinner/>:null,
-          content=!loading && !error && uidata ? View():null;
+          content=!loading && !error && uidata ? setContent():null;
     return(
         <div className="admin-panel">
            {errorContent}
            {loadinContet}
+           <AdminSide uiData={uidata} loading={loading} lang={lang} contentChange={contentChange}/>
            {content}
         </div>
     )

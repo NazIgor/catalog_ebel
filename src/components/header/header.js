@@ -10,9 +10,9 @@ const Header=()=>{
                 <li className="header-link_item">
                     <NavLink to="/admin-panel">admin</NavLink>
                 </li>
-                <li className="header-link_item">
+                {/* <li className="header-link_item">
                     <NavLink to="/add-page">добавить UI</NavLink>
-                </li>
+                </li> */}
             </ul>
         </>
     )
