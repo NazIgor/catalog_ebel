@@ -40,6 +40,8 @@
                 }
             }
 
+            $res['language'] = Main :: $obj -> language ? Main :: $obj -> language : $res['languages'][0];
+
             $this -> cout($res);
 
         }
