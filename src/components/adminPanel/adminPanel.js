@@ -43,14 +43,14 @@ const AdminPanel=(props)=>{
                 );
             case 'start':
                 return <StartContent/>;
-            default: return null;
+            default: return (<div className="admin-container"> <h4>Ничего нет:)))</h4></div>);
         }
     }
     const StartContent=()=>{
         return (
             <div className="admin-container">
                 <h3>Админ панель!</h3>
-                <h5>Сначала залогинься</h5>
+                <p>.........................</p>
                 <NavLink to="/">Перейти на главную страницу  {uidata.button_send[lang]}</NavLink>
             </div>
         )

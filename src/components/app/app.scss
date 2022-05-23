@@ -1,10 +1,22 @@
 .container{
     position: relative;
     width: 85%;
-    // height: 95vh;
+    height: 95vh;
     margin: 20px auto;
     // padding: 5px;
 
     border: solid 1px black;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    & main{
+        height: 95%;
+    }
+}
+.page404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    & img{
+        width: 80%;
+    }
 }

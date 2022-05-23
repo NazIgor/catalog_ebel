@@ -7,7 +7,7 @@ import { Spinner } from "../spinner/spinner";
 import LangPanel from "../langPanel/langPanel";
 import useConnectServer from "../../services/connect/connect";
 import AddPage from "../addPage/addPage";
-
+import Page404 from "../pages/404Page";
 import './app.scss';
 
 const App=()=>{
@@ -22,7 +22,7 @@ const App=()=>{
         postData({getlocale:''})
                 .then(data=>{
                     setUIdata(data);
-
+                    setLang(data.Getlocale.language);
                     setLangs(data.Getlocale.languages);
                 })
                 .catch((e)=>{
@@ -33,7 +33,17 @@ const App=()=>{
     },[])
 
     const changeLang=(lang)=>{
-        setLang(lang);
+        const data={setLanguage:{'language':lang}};
+        postData(data)
+                .then(data=>{
+                    console.log(data);
+                    setLang(lang);
+                })
+                .catch((e)=>{
+                    console.log(`state error: ${error}`);
+                    console.log(`request error: ${e}`);
+                })
+
     }
     //const loadContent=loading && !error? <Spinner/>:null;
 
@@ -50,6 +60,8 @@ const App=()=>{
                                    element={<AdminPanel lang={lang} langs={langs} uiData={uiData}/>}/>
                             <Route and path="/add-page" 
                                    element={<AddPage lang={lang} langs={langs} uiData={uiData}/>}/>
+                            <Route path="*" 
+                                   element={<Page404/>}/>
                         </Routes>
                 </main>
             </Router>
