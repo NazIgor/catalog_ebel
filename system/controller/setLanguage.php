@@ -16,6 +16,7 @@
         public function action($data)
         {
             Main :: $obj -> language = $data -> language;
+            if (Main :: $obj -> language == $data -> language) $this -> cout('ok');
         }
 	}	
 ?>
