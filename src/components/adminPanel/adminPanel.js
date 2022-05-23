@@ -6,6 +6,7 @@ import ErrorLoading from "../errorLoading/errorLoading";
 import { Spinner } from "../spinner/spinner";
 import AdminSide from "./adminSide/adminSide";
 import AddPage from "../addPage/addPage";
+import AdminCatalog from "./adminCatalog/adminCatalog";
 
 import './adminPanel.scss';
 
@@ -43,6 +44,12 @@ const AdminPanel=(props)=>{
                         <AddPage lang={props.lang} langs={props.langs} uiData={props.uiData.Getlocale}/>
                     </div>
                 );
+            case 'catalog':
+                return (
+                    <div className="admin-container">
+                        <AdminCatalog/>
+                    </div>
+                )
             case 'start':
                 return <StartContent/>;
             default: return (<div className="admin-container"> <h4>Ничего нет:)))</h4></div>);
