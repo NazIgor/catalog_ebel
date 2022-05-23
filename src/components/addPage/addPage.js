@@ -4,7 +4,7 @@ import './addPage.scss';
 
 const AddPage=({lang, langs, uiData})=>{
     const {postData}=useConnectServer();
-    console.log(uiData);
+    
     const sendData=()=>{
         let dataForPost={};
         langs.forEach(item=>{
@@ -25,7 +25,25 @@ const AddPage=({lang, langs, uiData})=>{
                 })
                 .catch(e=>console.log(e));
     }
-    console.log(langs);
+    const uploadData=()=>{
+        alert('data is uploading!');
+    }
+    const syncData=()=>{
+        alert ('data is synchronized!!');
+    }
+    const returnUI=()=>{
+        const list=[]
+        
+        for (let key in uiData){
+            list.push(
+                <div className="listUI_items" key={key}>
+                    <div className="keyUI">{key}</div>
+                    <div className="valueUI">{JSON.stringify(uiData[key])}</div>
+                </div>
+            )
+        }
+        return list;
+    }
     const returnLangs=()=>{
         const lll= langs.map(item=>{
             return (
@@ -40,6 +58,17 @@ const AddPage=({lang, langs, uiData})=>{
             <input type="text" id="lang-name" placeholder="name"></input>
             {returnLangs()}
             <button onClick={()=>{sendData()}}>Исчо давай!!</button>
+            <div className="add-ui_divider"></div>
+            <span>Таблица locale</span>
+            <div className="sync-data">
+                
+                <button className="sync-data_btn" onClick={uploadData} >Upload</button>
+                <button className="sync-data_btn" onClick={syncData} >Synchronize</button>
+            </div>
+            <div className="list">
+                <strong>Данные таблицы locale: </strong><p>.......................................</p>
+                {returnUI()}
+            </div>
         </div>
     )
 }

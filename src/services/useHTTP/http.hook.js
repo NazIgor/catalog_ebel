@@ -6,7 +6,6 @@ export const useHttp = () => {
 
     const request = useCallback(async (body = null, url, method = 'GET',  headers = {'Content-Type': 'application/x-www-form-urlencoded'}) => {
        
-        console.log('from HTTP ', url, method, body, headers);
        
         setLoading(true);
 

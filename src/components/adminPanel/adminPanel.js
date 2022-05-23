@@ -19,10 +19,12 @@ const AdminPanel=(props)=>{
     useEffect(()=>{
         setLang(lang=>props.lang);
         console.log('change lang to: ', lang);
+         // eslint-disable-next-line
     },[props.lang])
 
     useEffect(()=>{
         initUIdata();
+         // eslint-disable-next-line
     },[])
 
     const initUIdata=()=>{
@@ -64,9 +66,9 @@ const AdminPanel=(props)=>{
           content=!loading && !error && uidata ? setContent():null;
     return(
         <div className="admin-panel">
+           {loading? null: <AdminSide uiData={uidata} loading={loading} lang={lang} contentChange={contentChange}/>}
            {errorContent}
            {loadinContet}
-           <AdminSide uiData={uidata} loading={loading} lang={lang} contentChange={contentChange}/>
            {content}
         </div>
     )

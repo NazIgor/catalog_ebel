@@ -1,5 +1,5 @@
 
-import { Spinner } from '../../spinner/spinner';
+// import { Spinner } from '../../spinner/spinner';
 
 import './adminSide.scss';
 
@@ -13,12 +13,16 @@ const AdminSide=({uiData, loading, lang, contentChange})=>{
                 <li className="admin-side_item" data-target="catalog">
                     <div className="admin-side_item_btn">{uiData.btn_catalog[lang]}</div>
                 </li>
-                <li className="admin-side_item">
-                    <div className="admin-side_item_btn">Button</div>
+                <li className="admin-side_item" data-target="mebel" >
+                    <div className="admin-side_item_btn">{uiData.btn_mebel[lang]}</div>
                 </li>
-                <li className="admin-side_item" >
-                    <div className="admin-side_item_btn">Button</div>
+                <li className="admin-side_item" data-target="banner">
+                    <div className="admin-side_item_btn">{uiData.btn_banner[lang]}</div>
                 </li>
+                <li className="admin-side_item" data-target="collection">
+                    <div className="admin-side_item_btn">{uiData.btn_set[lang]}</div>
+                </li>
+                
                 <li className="admin-side_item" data-target="ui"  >
                     <div className="admin-side_item_btn" 
                           data-target="ui"
@@ -30,7 +34,7 @@ const AdminSide=({uiData, loading, lang, contentChange})=>{
     const content=!loading && uiData? loadBtns():null;
     return(
         <div className="admin-side">
-            {loading?<Spinner/>:null}
+            {/* {loading?<Spinner/>:null} */}
             {content}
         </div>
     )

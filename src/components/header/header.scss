@@ -1,9 +1,12 @@
 @import '/src/style/var';
 
-.header-link{
-    
+.header-link{    
+    display: flex;
+    align-items:center;
+    height: 50px;
     padding: 3px;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
+    background-color: #646e7b;
     &_item{
         display: inline;
         margin-left: 10px;

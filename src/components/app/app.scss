@@ -1,12 +1,13 @@
 .container{
     position: relative;
-    width: 85%;
-    height: 95vh;
-    margin: 20px auto;
+    // width: 85%;
+    height: 99vh;
+    margin: 0px auto;
     // padding: 5px;
 
     border: solid 1px black;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+    text-align: center;
     & main{
         height: 95%;
     }

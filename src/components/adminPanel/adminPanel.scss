@@ -2,12 +2,17 @@
 
 .admin-panel{
     display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
 
     background-color: $adminBackgroundColor;
+    
 }
 .admin-container{
+    
     width: 95%;
     padding: 15px;
+    overflow: overlay;
+    
 }

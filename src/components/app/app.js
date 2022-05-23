@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AdminPanel from "../adminPanel/adminPanel";
 import MainPage from "../mainPage/mainPage";
 import Header from "../header/header";
-import { Spinner } from "../spinner/spinner";
+// import { Spinner } from "../spinner/spinner";
 import LangPanel from "../langPanel/langPanel";
 import useConnectServer from "../../services/connect/connect";
 import AddPage from "../addPage/addPage";
@@ -11,10 +11,10 @@ import Page404 from "../pages/404Page";
 import './app.scss';
 
 const App=()=>{
-    const [lang, setLang]=useState('ru'),
+    const [lang, setLang]=useState(null),
           [uiData, setUIdata]=useState(null),
           [langs, setLangs]=useState(['ru']);
-    const {loading, clearError, error, postData}=useConnectServer();
+    const {clearError, error, postData}=useConnectServer();
 
 
     useEffect(()=>{  
@@ -33,10 +33,8 @@ const App=()=>{
     },[])
 
     const changeLang=(lang)=>{
-        const data={setLanguage:{'language':lang}};
-        postData(data)
+        postData({setLanguage:{'language':lang}})
                 .then(data=>{
-                    console.log(data);
                     setLang(lang);
                 })
                 .catch((e)=>{
