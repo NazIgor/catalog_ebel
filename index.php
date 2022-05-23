@@ -59,7 +59,7 @@ define('DOCROOT', realpath(dirname(__FILE__)));
 			self :: $obj -> data = self :: $obj -> get_data();// извлечение данных
 		    
             self :: clear_glob();// удаление глобальных переменных
-self :: $obj -> flag = TRUE;
+
 			self :: factory('dlc', 'controller');// запуск основного контроллера
 			
 		}
