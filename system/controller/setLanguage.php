@@ -1,14 +1,11 @@
 <?php defined('DOCROOT') OR die('No direct script access.');
 	/*
-	#
-	#  project: "autosalon"
-	#  file: testData.php
-	#  date: 07.02.2022
+	#  project: "ebel"
+	#  date: 23.05.2022
 	#  author: Medvedev Alexandr
-	#
 	*/
 	
-	class TestData extends Controller
+	class SetLanguage extends Controller
 	{
 
 		public static function init()
@@ -18,7 +15,7 @@
 
         public function action($data)
         {
-            $this -> cout($data);
+            Main :: $obj -> language = $data -> language;
         }
 	}	
 ?>
