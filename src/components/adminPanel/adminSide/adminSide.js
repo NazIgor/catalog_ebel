@@ -8,19 +8,19 @@ const AdminSide=({uiData, loading, lang, contentChange})=>{
         return(
             <ul onClick={contentChange}>
                 <li className="admin-side_item" data-target="start">
-                    <div className="admin-side_item_btn">{uiData.btn_main[lang]}</div>
+                    <div className="admin-side_item_btn" data-target="start">{uiData.btn_main[lang]}</div>
                 </li>
                 <li className="admin-side_item" data-target="catalog">
-                    <div className="admin-side_item_btn">{uiData.btn_catalog[lang]}</div>
+                    <div className="admin-side_item_btn" data-target="catalog">{uiData.btn_catalog[lang]}</div>
                 </li>
                 <li className="admin-side_item" data-target="mebel" >
-                    <div className="admin-side_item_btn">{uiData.btn_mebel[lang]}</div>
+                    <div className="admin-side_item_btn" data-target="mebel">{uiData.btn_mebel[lang]}</div>
                 </li>
                 <li className="admin-side_item" data-target="banner">
-                    <div className="admin-side_item_btn">{uiData.btn_banner[lang]}</div>
+                    <div className="admin-side_item_btn" data-target="banner">{uiData.btn_banner[lang]}</div>
                 </li>
                 <li className="admin-side_item" data-target="collection">
-                    <div className="admin-side_item_btn">{uiData.btn_set[lang]}</div>
+                    <div className="admin-side_item_btn" data-target="collection">{uiData.btn_set[lang]}</div>
                 </li>
                 
                 <li className="admin-side_item" data-target="ui"  >

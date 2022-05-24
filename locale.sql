@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Май 23 2022 г., 09:56
+-- Время создания: Май 24 2022 г., 06:56
 -- Версия сервера: 5.7.33
 -- Версия PHP: 8.0.14
 
@@ -45,7 +45,10 @@ INSERT INTO `locale` (`id`, `name`, `ru`, `en`, `kz`) VALUES
 (3, 'btn_addUI', 'UI элемент', 'UI elements', 'UI чего-то'),
 (4, 'btn_main', 'Главная', 'Main', 'Баска'),
 (5, 'btn_catalog', 'Каталог', 'Catalog', 'Котолог'),
-(7, 'lb_add', 'Добавить', 'Add', 'Бер (наверно))');
+(7, 'lb_add', 'Добавить', 'Add', 'Бер (наверно))'),
+(8, 'btn_banner', 'Баннер', 'Banner', 'Барабан'),
+(9, 'btn_mebel', 'Товары', 'Products', 'Поджопник'),
+(10, 'btn_set', 'Коллекции', 'Collections', 'Калэкция');
 
 --
 -- Индексы сохранённых таблиц
@@ -65,7 +68,7 @@ ALTER TABLE `locale`
 -- AUTO_INCREMENT для таблицы `locale`
 --
 ALTER TABLE `locale`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
