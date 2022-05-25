@@ -74,7 +74,7 @@
             
             if (count($new_data) == 0) return 'no ads found';
         
-            $new_data[] = 'write line: '.$count_line.'; error write: '.$error_line;
+            $new_data[] = 'write rows: '.$count_line.'; errors write: '.$error_line;
 
             if (@$res['write'] === 'error') $this -> alert('error write data');
             return $new_data;

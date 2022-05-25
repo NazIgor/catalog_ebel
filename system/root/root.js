@@ -65,6 +65,7 @@
             this.cmd.addEventListener("keydown", () => {this.keyPress(event, this)});
             this.cmd.addEventListener("click", () => {
                 this.cmd.selectionStart = this.cmd.value.length;
+                this.cmd.scrollTop = this.cmd.scrollHeight;
             });
 
             this.execute();
