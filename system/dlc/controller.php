@@ -26,7 +26,7 @@
                 }
                 else
                 {
-                    $this -> alert('data incorrect '.serialize(Main :: $obj -> data));
+                    (new self) -> alert('data incorrect '.serialize(Main :: $obj -> data));
                 }
             }
             else
@@ -48,7 +48,7 @@
             
             if (is_object($data)) $data = (array)$data;
 
-            if (is_string($data) OR is_numeric($data) OR is_bool($data)) $data = [0 => $data];
+            if (is_string($data) OR is_numeric($data) OR is_bool($data) OR $data == '') $data = [0 => $data];
 
             if (!is_array($data)) $data = array(); 
 

@@ -1,11 +1,8 @@
 <?php defined('DOCROOT') OR die('No direct script access.');
 	/*
-	#
-	#  project: "salon"
-	#  file: root.php
-	#  date: 06.12.2020
+	#  project: "ebel"
+	#  date: 24.05.2022
 	#  author: Medvedev Alexandr
-	#
 	*/
 	
 	class Root extends Page
@@ -15,9 +12,8 @@
         {
             $this -> head();
             ?>
-                <script type="text/javascript" src="/js/test.js"></script>
-                <script type="text/javascript" src="/js/listeners.js"></script>
-                <button onclick="testEvent()">SEND</button>
+                <link rel="stylesheet" href="/system/root/root.css">
+                <script src="/system/root/root.js"></script>
             <?php
             $this -> close_tag();
         }

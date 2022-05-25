@@ -18,14 +18,11 @@
 
         public function action($path)
         {
-            $path = 'base';
-
             $page = Main :: factory('page', $path);
 
             if (!$page)
             {
-                $page = Main :: factory('page', 'notfound');
-                $this -> alert('notfound: '. $path, exit: FALSE);
+                $page = Main :: factory('page', 'base');
             }
 
             $page -> content();
@@ -38,7 +35,6 @@
 <!DOCTYPE html>
     <html lang="en">
         <head>
-            <meta charset="UTF-8">
             <meta charset="utf-8" />
             <meta name="viewport" content="width=device-width,initial-scale=1" />
             <title>Catalog</title>
