@@ -25,7 +25,7 @@
         {
             if ($param == '') $this -> alert('controller undefined');
             $arr = explode(' ', $param);
-            $data = count($arr) > 2 ? implode(' ', array_slice($arr, 1)) : array();
+            $data = count($arr) > 2 ? json_decode(implode(' ', array_slice($arr, 1))) : array();
             $ctrl = Main :: factory('controller', $arr[0]);
             if (!$ctrl) $this -> alert('controller undefined');
             try {

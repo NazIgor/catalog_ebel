@@ -15,7 +15,6 @@
 
         public function action($data)
         {
-            
             if (empty($data -> action)) $this -> alert('error data');
             $action = $data -> action;
             $this -> cout($this -> $action());
@@ -29,7 +28,7 @@
                                  -> execute();
 
             return Main :: $obj -> filec(Main :: $obj -> tmppath.'locale')
-                                -> write(json_encode($data))
+                                -> write(json_encode($data), 'w')
                                 -> execute();
         }
 
@@ -40,23 +39,42 @@
                                      -> execute();
 
             $file_data = json_decode(Main :: $obj -> filec(Main :: $obj -> tmppath.'locale')
-                                                  -> read()
+                                                  -> read('r')
                                                   -> execute());
 
             $new_data = array();
+            $count_line = 0;
+            $error_line = 0;
             foreach((array)$file_data as $item)
             {
                 $item = (array)$item;
-                if (array_search($item, $old_data) === FALSE)
+                $search = FALSE;
+                foreach($old_data as $row)
+                    if($row['name'] == $item['name']) $search = TRUE;
+
+                if (!$search)
                 {
+                    unset($item['id']);
                     $new_data[] = $item;
+                    
+                    $res = Main :: $obj -> db()
+                                        -> write('locale', $item)
+                                        -> execute();
+
+                    if (@$res['write'] === 'error')
+                    {
+                        $error_line++;
+                    }
+                    else
+                    {
+                        $count_line++;
+                    }
                 }
             }
+            
             if (count($new_data) == 0) return 'no ads found';
         
-            $res = Main :: $obj -> db()
-                                -> write('locale', $new_data)
-                                -> execute();
+            $new_data[] = 'write line: '.$count_line.'; error write: '.$error_line;
 
             if (@$res['write'] === 'error') $this -> alert('error write data');
             return $new_data;

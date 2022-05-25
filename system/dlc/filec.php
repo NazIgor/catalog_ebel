@@ -42,10 +42,10 @@
 			
 		}
 		
-		public function read()
+		public function read($param = 'rb')
 		{
 			
-			if($this -> open('rb'))
+			if($this -> open($param))
 			{
 				
 				while(($bufer = fgets($this -> file)) !== FALSE)

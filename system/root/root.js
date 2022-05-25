@@ -63,6 +63,9 @@
             
             this.cmd.addEventListener("blur", this.cmd.focus);
             this.cmd.addEventListener("keydown", () => {this.keyPress(event, this)});
+            this.cmd.addEventListener("click", () => {
+                this.cmd.selectionStart = this.cmd.value.length;
+            });
 
             this.execute();
         }
@@ -173,7 +176,11 @@
                         twospace = space + "   ";
                         for (let elem in msg) {
                             if (toString.call(msg[elem]) != '[object Function]') this.execute(elem + ': ', true, twospace)
-                            this.execute(msg[elem], true, space, true);
+                            if (toString.call(msg[elem]) == '[object String]') {
+                                this.execute(msg[elem], true, '', true);
+                            } else {
+                                this.execute(msg[elem], true, space, true);
+                            }
                         }
                         this.execute('}', true, space);
                     break;
@@ -223,11 +230,10 @@
             for (let key in request) {
                 data[key] = request[key];
             }
-            console.log(data);
+            //console.log(data);
             new toServer(data)
                 .execute()
                 .then((d) => {
-                    console.log(d);
                     this.execute(d);
                 });
         }
