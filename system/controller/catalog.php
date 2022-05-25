@@ -68,7 +68,7 @@
 
             if (@$res['write'] === 'error') $this -> alert('data write error');
 
-            $this -> cout($res);
+            $this -> read($data);
         }
 	}	
 ?>
