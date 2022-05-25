@@ -1,9 +1,10 @@
 import useConnectServer from "../../services/connect/connect";
+import {Spinner} from '../spinner/spinner';
 
 import './addPage.scss';
 
 const AddPage=({lang, langs, uiData})=>{
-    const {postData}=useConnectServer();
+    const {postData, loading}=useConnectServer();
     
     const sendData=()=>{
         let dataForPost={};
@@ -26,10 +27,16 @@ const AddPage=({lang, langs, uiData})=>{
                 .catch(e=>console.log(e));
     }
     const uploadData=()=>{
-        alert('data is uploading!');
+        postData({synchronize:{action:'load'}})
+                .then(data=>{
+                    alert ('data is uploading, ', JSON.stringify(data));
+                }).catch(e=>console.log('error uploading data: ', e));
     }
     const syncData=()=>{
-        alert ('data is synchronized!!');
+        postData({synchronize:{action:'synch'}})
+                .then(data=>{
+                    alert ('data is synchronize, ', JSON.stringify(data));
+                }).catch(e=>console.log('error synchronize data: ', e));
     }
     const returnUI=()=>{
         const list=[]
@@ -60,6 +67,7 @@ const AddPage=({lang, langs, uiData})=>{
             <button onClick={()=>{sendData()}}>Исчо давай!!</button>
             <div className="add-ui_divider"></div>
             <span>Таблица locale</span>
+            {loading?<Spinner/>:null}
             <div className="sync-data">
                 
                 <button className="sync-data_btn" onClick={uploadData} >Upload</button>
