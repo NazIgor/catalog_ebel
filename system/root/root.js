@@ -177,7 +177,7 @@
                         twospace = space + "   ";
                         for (let elem in msg) {
                             if (toString.call(msg[elem]) != '[object Function]') this.execute(elem + ': ', true, twospace)
-                            if (toString.call(msg[elem]) == '[object String]') {
+                            if (toString.call(msg[elem]) == '[object String]' || toString.call(msg[elem] == '[object Number]')) {
                                 this.execute(msg[elem], true, '', true);
                             } else {
                                 this.execute(msg[elem], true, space, true);
