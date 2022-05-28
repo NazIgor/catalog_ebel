@@ -75,7 +75,7 @@
         {
             if (empty($data -> id)) $this -> alert('id is empty');
             $id = $data -> id;
-            if (empty($data -> terget)) $this -> alert('target is empty');
+            if (empty($data -> target)) $this -> alert('target is empty');
             switch($data -> target)
             {
                 case "cat":
