@@ -12,5 +12,7 @@ description controllers
 #synchronize
     {synchronize: {action: "load || synch"}};
 
-#catalog
+#catalog read write
     {catalog: {action: "read || write", (не обязательный параметр)id: "int.id"}};
+#catalog delete
+    {catalog: {action: "del", id = "int.id", target = "cat||subCat"};
