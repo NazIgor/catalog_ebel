@@ -1,20 +1,28 @@
+import { lazy, Suspense } from "react";
+
 import { BrowserRouter as Router, Route, Routes, } from "react-router-dom";
-import { useEffect, useState } from "react";
-import AdminPanel from "../adminPanel/adminPanel";
-import MainPage from "../mainPage/mainPage";
+import { useEffect, useState,} from "react";
+
+
 import Header from "../header/header";
-// import { Spinner } from "../spinner/spinner";
+import { Spinner } from "../spinner/spinner";
+// import AdminPanel from "../adminPanel/adminPanel";
+// import MainPage from '../mainPage/mainPage';
 import LangPanel from "../langPanel/langPanel";
 import useConnectServer from "../../services/connect/connect";
 import AddPage from "../addPage/addPage";
-import Page404 from "../pages/404Page";
+
 import './app.scss';
+
+const Page404=lazy(()=>import ("../pages/404Page"));
+const AdminPanel=lazy(()=>import ("../adminPanel/adminPanel"));
+const MainPage = lazy (()=>import ('../mainPage/mainPage'));
 
 const App=()=>{
     const [lang, setLang]=useState(null),
           [uiData, setUIdata]=useState(null),
           [langs, setLangs]=useState(['ru']);
-    const {clearError, error, postData}=useConnectServer();
+    const {clearError, postData}=useConnectServer();
 
 
     useEffect(()=>{  
@@ -26,7 +34,6 @@ const App=()=>{
                     setLangs(data.Getlocale.languages);
                 })
                 .catch((e)=>{
-                    console.log(`state error: ${error}`);
                     console.log(`request error: ${e}`);
                 })
                 // eslint-disable-next-line
@@ -38,12 +45,10 @@ const App=()=>{
                     setLang(lang);
                 })
                 .catch((e)=>{
-                    console.log(`state error: ${error}`);
                     console.log(`request error: ${e}`);
                 })
 
     }
-    //const loadContent=loading && !error? <Spinner/>:null;
 
     return(
         <div className="container">
@@ -51,16 +56,18 @@ const App=()=>{
                 <main>
                     <Header/>
                     <LangPanel langs={langs} changeLang={changeLang}/>
-                        <Routes>
-                            <Route and path="/" 
-                                   element={<MainPage lang={lang} langs={langs} uiData={uiData}/>}/>
-                            <Route and path="/admin-panel" 
-                                   element={<AdminPanel lang={lang} langs={langs} uiData={uiData}/>}/>
-                            <Route and path="/add-page" 
-                                   element={<AddPage lang={lang} langs={langs} uiData={uiData}/>}/>
-                            <Route path="*" 
-                                   element={<Page404/>}/>
-                        </Routes>
+                        <Suspense fallback={<Spinner/>}>
+                            <Routes>
+                                <Route and path="/" 
+                                    element={<MainPage lang={lang} langs={langs} uiData={uiData}/>}/>
+                                <Route and path="/admin-panel" 
+                                    element={<AdminPanel lang={lang} langs={langs} uiData={uiData}/>}/>
+                                <Route and path="/add-page" 
+                                    element={<AddPage lang={lang} langs={langs} uiData={uiData}/>}/>
+                                <Route path="*" 
+                                    element={<Page404/>}/>
+                            </Routes>
+                        </Suspense>
                 </main>
             </Router>
         </div>

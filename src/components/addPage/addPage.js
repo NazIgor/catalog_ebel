@@ -1,10 +1,12 @@
+import { useState } from "react";
 import useConnectServer from "../../services/connect/connect";
 import {Spinner} from '../spinner/spinner';
 
 import './addPage.scss';
 
-const AddPage=({lang, langs, uiData})=>{
-    const {postData, loading}=useConnectServer();
+const AddPage=({lang, langs, uIData})=>{
+    const {postData, loading}=useConnectServer(),
+          [uiData, setUIData]= useState(uIData);
     
     const sendData=()=>{
         let dataForPost={};
@@ -14,6 +16,10 @@ const AddPage=({lang, langs, uiData})=>{
         })
         dataForPost['name']=document.getElementById('lang-name').value;
         document.getElementById('lang-name').disabled=true;
+        if (dataForPost.name==='' || dataForPost.ru===''){
+            alert ('заполните обязательные поля NAME, RU');
+            return;
+        }
         postData({addUI:dataForPost})
                 .then(data=>{
                     langs.forEach(item=>{
@@ -22,9 +28,16 @@ const AddPage=({lang, langs, uiData})=>{
                     })
                     document.getElementById('lang-name').value='';
                     document.getElementById('lang-name').disabled=false;
+                    updateUIDate();
                     alert('UI element added !!!');
                 })
                 .catch(e=>console.log(e));
+    }
+    const updateUIDate=()=>{
+        postData({getlocale:''})
+                .then(data=>{
+                    setUIData(data.Getlocale);
+                }).catch(e=>console.log('error update UI Data, ',e));
     }
     const uploadData=()=>{
         postData({synchronize:{action:'load'}})

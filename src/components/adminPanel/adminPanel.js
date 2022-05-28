@@ -15,7 +15,8 @@ const AdminPanel=(props)=>{
     const [lang, setLang]=useState(props.lang),
           [target, setTarget]=useState('start'),
           {postData, clearError, error, loading}=useConnectServer(),
-          [uidata, setUIData]=useState(null);
+          [uidata, setUIData]=useState(null),
+          {langs}=props;;
 
     useEffect(()=>{
         setLang(lang=>props.lang);
@@ -41,13 +42,13 @@ const AdminPanel=(props)=>{
             case 'ui':
                 return (
                     <div className="admin-container">
-                        <AddPage lang={props.lang} langs={props.langs} uiData={props.uiData.Getlocale}/>
+                        <AddPage lang={props.lang} langs={props.langs} uIData={props.uiData.Getlocale}/>
                     </div>
                 );
             case 'catalog':
                 return (
                     <div className="admin-container">
-                        <AdminCatalog/>
+                        <AdminCatalog lang={lang} langs={langs}/>
                     </div>
                 )
             case 'start':

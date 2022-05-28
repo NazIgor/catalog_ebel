@@ -1,13 +1,15 @@
 @import '/src/style/var';
 
+
 .admin-catalog{
     width: 90%;
-    height: 90%;
-
+    height: 100%;
+    padding: 10px;
     background-color: white;
     border: 1px solid black;
     border-radius: 3px;
     box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
+    overflow: overlay;
     & ul{
         list-style: none;
         margin: 0;
@@ -17,13 +19,14 @@
     }
     & li{
         cursor: pointer;
+        
         & .item{
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 45px;
-            width: 200px;
+            width: 300px;
             border-bottom: 1px solid black;
             transition: all 0.3s;
             & img{
@@ -51,26 +54,46 @@
         display: flex;
         justify-content: space-around;
         margin-top: 20px;
+        &_right{
+            width: 350px;
+        }
+        &_left{
+            width: 350px;
+        }
+    }
+    & .add-area{
+        width: 300px;
     }
     & .addCat{
-        position: absolute;
-        bottom: 0;
-        
-        &-input{
-            width: 70%;
-            height: 30px;
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
 
+        &-input{
+            width: 270px;
+            height: 30px;
+            margin-left: 10px;
+            margin-top: 5px;
             font-size: 1.1em;
+
         }
         &-btn{
-            width: 150px;
+            width: 130px;
             height: 40px;
+            margin-left: 10px;
+            margin-top: 10px;
+            text-align: center;
         }
     }
+    & .hide{
+        display:none;
+    }
     & .left{
-        right:150px;
+        text-align: left;
     }
     & .right{
-        left:250px;
+        text-align: left;
     }
+    
 }
