@@ -70,5 +70,39 @@
 
             $this -> read($data);
         }
+
+        private function del($data)
+        {
+            if (empty($data -> id)) $this -> alert('id is empty');
+            $id = $data -> id;
+            if (empty($data -> terget)) $this -> alert('target is empty');
+            switch($data -> target)
+            {
+                case "cat":
+                    $res = Main :: $obj -> db()
+                                        -> clear('catalogs')
+                                        -> where($id)
+                                        -> execute();
+                break;
+                case "subCat":
+                    $data -> id = @Main :: $obj -> db()
+                                                -> read('sub_catalog')
+                                                -> where($id)
+                                                -> execute()[0]['catalog'];
+                    $res = Main :: $obj -> db()
+                                        -> clear('sub_catalog')
+                                        -> where($id)
+                                        -> execute();
+                break;
+                default:
+                    $this -> alert('target error');
+                break;
+            }
+
+            if (@$res['clear'] === 'error') $this -> alert('delete error');
+
+            $this -> read($data);
+
+        }
 	}	
 ?>
