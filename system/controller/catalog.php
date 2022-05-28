@@ -83,6 +83,8 @@
                                         -> clear('catalogs')
                                         -> where($id)
                                         -> execute();
+
+                    unset($data -> id);
                 break;
                 case "subCat":
                     $data -> id = @Main :: $obj -> db()
