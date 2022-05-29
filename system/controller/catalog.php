@@ -79,6 +79,10 @@
             switch($data -> target)
             {
                 case "cat":
+                    Main :: $obj -> db()
+                                 -> clear('sub_catalog')
+                                 -> where('catalog='.$id)
+                                 -> execute();
                     $res = Main :: $obj -> db()
                                         -> clear('catalogs')
                                         -> where($id)
