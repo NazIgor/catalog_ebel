@@ -7,6 +7,7 @@ import { Spinner } from "../spinner/spinner";
 import AdminSide from "./adminSide/adminSide";
 import AddPage from "../addPage/addPage";
 import AdminCatalog from "./adminCatalog/adminCatalog";
+import AdminProducts from "./adminProducts/adminProducts";
 
 import './adminPanel.scss';
 
@@ -53,6 +54,8 @@ const AdminPanel=(props)=>{
                 )
             case 'start':
                 return <StartContent/>;
+            case 'mebel':
+                return <AdminProducts lang={lang}/>
             default: return (<div className="admin-container"> <h4>Ничего нет:)))</h4></div>);
         }
     }
