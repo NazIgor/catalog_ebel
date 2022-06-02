@@ -6,9 +6,9 @@ import "./same.scss";
 
 const Courusel=({data})=>{
     const element=()=>{
-        const elem=data.map(item=>{
+        const elem=data.map((item,i)=>{
             return (
-                <img src={item} alt="img-courusel" />
+                <img src={item} alt="img-courusel" key={`imgs${i}`}/>
             )
         })
         return elem;

@@ -1,10 +1,12 @@
+import { useState } from "react";
 import AdminProductsList from "./adminProductsList";
+import ProductAdd from "./productAdd";
 
 
 import './adminProducts.scss';
 
 
-const AdminProducts=({lang})=>{
+const AdminProducts=({lang, langs})=>{
     const data=[
         {id:1,
         name:{
@@ -37,16 +39,25 @@ const AdminProducts=({lang})=>{
             price: 3500
         }
     ]
+    const [hideItems, setHideItems]=useState(true);
+
+    const changeHideItems=()=>{
+        setHideItems(hideItems=>!hideItems);
+    }
+    const classItems=hideItems? "items items_hide":'items ';
     return (
         <div className="admin-container">
             <div className="products">
                 <h3>Список товаров:</h3>
-                <div className="items">
+                <div className="hide-show" onClick={changeHideItems}>------Скрыть/ показать список------</div>
+                <div className={classItems}>
                     <ul>
                         <AdminProductsList lang={lang} data={data}/>
                     </ul>
+                </div>
+                <ProductAdd langs={langs}/>
             </div>
-        </div>
+            
         </div>
     )
 }

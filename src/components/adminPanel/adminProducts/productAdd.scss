@@ -1,0 +1,54 @@
+.product_add{
+    position: relative;
+    margin-top: 50px;
+    width: 100%;
+    & .label{
+        position: absolute;
+        top: -25px;
+        left: 0;
+        cursor: pointer;
+
+        font-size: 1em;
+        color: #a49a8d;
+        background-color:#e7e7e7;
+        z-index: 20;
+    }
+    & .container{
+        
+        width: 100%;
+        border-top: solid 1px grey;
+        border-bottom: solid 1px grey;
+        height: 100%;
+
+        overflow: auto;
+
+        & .add-area{
+            padding-left: 10px;
+            display: flex;
+            justify-content: left;
+            flex-direction: column;
+            align-items: baseline;
+            height: 100%;
+            & .des{
+                margin-top: 25px;
+            }
+            & input{
+                font-size: 1em;
+                margin: 3px 0 3px 2px;
+
+                width: 30%;
+            }
+            & button{
+                width: 150px;
+                height: 40px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+
+            }
+        }
+        & .add-area_hide{
+            height: 1px;
+            overflow: hidden;
+        }
+    }
+}

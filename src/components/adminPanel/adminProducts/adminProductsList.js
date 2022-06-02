@@ -1,6 +1,7 @@
 import Courusel from "../../courusel/courusel";
 import img1 from './temp_imgs/temp.jpg';
 import delPic from '/OpenServer/domains/catalog/src/images/icons/delete.png';
+import editPic from '/OpenServer/domains/catalog/src/images/icons/edit.png';
 
 
 const AdminProductsList=({lang, data})=>{
@@ -17,7 +18,7 @@ const AdminProductsList=({lang, data})=>{
     const content=()=>{
         const res=data.map((item,i)=>{
             return (
-                <>
+                
                 <li key={`prod${item.id}-${i}`}>
                     <div className="item" data-proid={item.id} key={`prod${item.id}-${i}`}>
                         <div className="description">
@@ -30,11 +31,12 @@ const AdminProductsList=({lang, data})=>{
                             <Courusel data={[img1,img1,img1]}/>
                         </div>
                         <div className="pics">
+                            <img src={editPic} alt="edit" />
                             <img src={delPic} alt="delete" />
                         </div>
                     </div>
                 </li>
-                </>
+                
             )
         })
         return res;

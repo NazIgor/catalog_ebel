@@ -55,7 +55,7 @@ const AdminPanel=(props)=>{
             case 'start':
                 return <StartContent/>;
             case 'mebel':
-                return <AdminProducts lang={lang}/>
+                return <AdminProducts lang={lang} langs={langs}/>
             default: return (<div className="admin-container"> <h4>Ничего нет:)))</h4></div>);
         }
     }
