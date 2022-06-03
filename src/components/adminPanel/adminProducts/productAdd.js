@@ -38,24 +38,36 @@ const ProductAdd=({langs})=>{
             console.log(item.getAttribute('data-name'), item.getAttribute('value'));
 
         })
-        console.log(files);
+        // console.log(files);
     const fileList=[];
     files.forEach(file=>{
         let reader=new FileReader();
         reader.readAsDataURL(file);
         reader.onload= function() {
-            fileList.push(reader.result);
+            postData({parts:{data:reader.result}})
+                    .then(data=>{console.log(data)})
+                    .catch(e=>console.log(`error: ${e}`));
+            
         }
 
     })
-        clearError();
-        postData({parts:{data:fileList}})
-                .then(data=>{
-                    console.log(data)
-                })
-                .catch(e=>{
-                    console.log('error:  ', e);
-                })
+        // clearError();
+        // console.log(fileList);
+        // postData({parts:{data:files.map(file=>{
+        //     let reader=new FileReader();
+        //     reader.readAsDataURL(file);
+        //     reader.onload= function() {
+        //         return reader.result;
+                
+        //     }
+        // })}})
+        //         .then(data=>{
+        //             console.log(fileList, data)
+        //         })
+        //         .catch(e=>{
+        //             console.log(fileList);
+        //             console.log('error:  ', e);
+        //         })
         
         
     }
