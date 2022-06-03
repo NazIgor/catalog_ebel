@@ -25,7 +25,6 @@ export const useHttp = () => {
     }, []);
     const requestFormData=useCallback(async (body=null, url, method='POST')=>{
         setLoading(true);
-
         try{
             const response= await fetch(url, {method, body: body});
             if(!response.ok){

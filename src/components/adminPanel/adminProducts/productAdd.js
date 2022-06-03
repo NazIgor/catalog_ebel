@@ -39,12 +39,17 @@ const ProductAdd=({langs})=>{
 
         })
         console.log(files);
-    const fileList=new FormData();
+    const fileList=[];
     files.forEach(file=>{
-        fileList.append('file', file);
+        let reader=new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload= function() {
+            fileList.push(reader.result);
+        }
+
     })
         clearError();
-        postFiles({parts:{data:fileList}})
+        postData({Parts:{data:fileList}})
                 .then(data=>{
                     console.log(data)
                 })
