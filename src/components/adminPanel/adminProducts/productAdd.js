@@ -9,7 +9,7 @@ const ProductAdd=({langs})=>{
     const [areaClass, setAreaClass]=useState(false),
           [files, setFiles]=useState(null),
           nameInput=useRef([]),
-          {postData, clearError}=useConnectServer();
+          {postData, clearError, postFiles}=useConnectServer();
 
     const listLangsName=()=>{
         nameInput.current=[];
@@ -39,8 +39,12 @@ const ProductAdd=({langs})=>{
 
         })
         console.log(files);
+    const fileList=new FormData();
+    files.forEach(file=>{
+        fileList.append('file', file);
+    })
         clearError();
-        postData({parts:{data:files}})
+        postFiles({parts:{data:fileList}})
                 .then(data=>{
                     console.log(data)
                 })

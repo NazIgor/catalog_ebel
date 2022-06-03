@@ -37,17 +37,12 @@ const img = {
 
 const UploadImages=({getFiles})=> {
   const [files, setFiles] = useState([]);
-  const {postFiles, clearError}=useConnectServer();
 
   const {getRootProps, getInputProps} = useDropzone({
     accept: {
       'image/*': []
     },
     onDrop: acceptedFiles => {
-      const dataFile=acceptedFiles.map(file=>file);
-      postFiles({parts:{data:dataFile}})
-                .then(data=>console.log(`server answer: ${data}`))
-                .catch(e=>console.log(`error: ${e}`));
       setFiles(acceptedFiles.map(file => 
             Object.assign(file, {
             preview: URL.createObjectURL(file)
@@ -57,7 +52,7 @@ const UploadImages=({getFiles})=> {
     }
   });
   useEffect(()=>{
-    getFiles();
+    getFiles(files);
     // eslint-disable-next-line
   }, [files]);
 
