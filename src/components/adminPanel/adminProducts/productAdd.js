@@ -49,7 +49,7 @@ const ProductAdd=({langs})=>{
 
     })
         clearError();
-        postData({Parts:{data:fileList}})
+        postData({parts:{data:fileList}})
                 .then(data=>{
                     console.log(data)
                 })
