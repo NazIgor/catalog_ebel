@@ -1,7 +1,7 @@
 import { useHttp } from "../useHTTP/http.hook";
 
 const useConnectServer=()=>{
-    const {loading, request, error, clearError}=useHttp();
+    const {loading, request, error, clearError, requestFormData}=useHttp();
     const _baseURL='http://ebel.lc/';
 
     const postData=async(body, url=_baseURL, method="POST",headers = {'Content-Type': 'application/x-www-form-urlencoded'})=>{
@@ -10,12 +10,17 @@ const useConnectServer=()=>{
         return res;
 
     }
+    const postFiles=async(body)=>{
+        
+        const res= await requestFormData(body);
+        return res;
 
+    }
     const getData=async (url)=>{
         const res= await request(url);
         return res;
     }
 
-    return {loading, error, clearError, postData, getData};
+    return {loading, error, clearError, postData, getData, postFiles};
 }
 export default useConnectServer;
