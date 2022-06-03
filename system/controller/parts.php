@@ -15,7 +15,7 @@
 
         public function action($data)
         {
-            $this -> cout($data);
+            $this -> cout($data, Main :: $obj -> files);
         }
 	}	
 ?>
