@@ -73,7 +73,7 @@
 		{
 			
 			@fclose($this -> file);
-            chmod($this -> path, 0755);
+            @chmod($this -> path, 0755);
 			$this -> path = NULL;
 			$value = $this -> value;
 			$this -> value = NULL;

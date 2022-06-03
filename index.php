@@ -55,8 +55,9 @@ define('DOCROOT', realpath(dirname(__FILE__)));
 				self :: $obj = new Main;// создаём объект main
 			}
 
-			self :: $obj -> url = self :: $obj -> get_url();  // получение url
-			self :: $obj -> data = self :: $obj -> get_data();// извлечение данных
+			self :: $obj -> url   = self :: $obj -> get_url(); // получение url
+			self :: $obj -> data  = self :: $obj -> get_data(); // извлечение данных
+            self :: $obj -> files = self :: $obj -> get_files(); //извлечение файлов
 		    
             self :: clear_glob();// удаление глобальных переменных
 
@@ -124,12 +125,8 @@ define('DOCROOT', realpath(dirname(__FILE__)));
 
 		private static function  clear_glob()// удаление всех глобальных переменных и переменных окружения
 		{
-
             foreach ($GLOBALS as $key => $value)
-            {
                 $GLOBALS[$key] = [];
-            }
-			
 		}
 		
 
