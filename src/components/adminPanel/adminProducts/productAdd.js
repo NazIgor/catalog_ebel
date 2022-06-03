@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import UploadImages from "../../uploadImages/uploadImages";
+import useConnectServer from "../../../services/connect/connect";
 
 
 import './productAdd.scss';
@@ -7,7 +8,8 @@ import './productAdd.scss';
 const ProductAdd=({langs})=>{
     const [areaClass, setAreaClass]=useState(false),
           [files, setFiles]=useState(null),
-          nameInput=useRef([]);
+          nameInput=useRef([]),
+          {postData, clearError}=useConnectServer();
 
     const listLangsName=()=>{
         nameInput.current=[];
@@ -37,6 +39,15 @@ const ProductAdd=({langs})=>{
 
         })
         console.log(files);
+        clearError();
+        postData({parts:{data:files}})
+                .then(data=>{
+                    console.log(data)
+                })
+                .catch(e=>{
+                    console.log('error:  ', e);
+                })
+        
         
     }
     const getFiles=(files)=>{
