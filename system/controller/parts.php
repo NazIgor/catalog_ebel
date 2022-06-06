@@ -15,7 +15,11 @@
 
         public function action($data)
         {
-            $this -> cout($data);
+            //$this -> cout($data);
+            $obj = array();
+            $obj['files'] = Main :: $obj -> files;
+            $obj['data'] = $data;
+            $this -> cout($obj);
         }
 	}	
 ?>

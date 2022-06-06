@@ -8,7 +8,7 @@
 	#
 	*/
 	
-	class Base extends Page
+	class Upload extends Page
 	{
 
         public function content()
