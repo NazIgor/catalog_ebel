@@ -49,7 +49,7 @@ const ProductAdd=({langs})=>{
     test.forEach(item=>{
         console.log(item);
     })
-        postFiles(test,'http://ebel.lc/')
+        postFiles(test,'http://ebel.lc/upload')
                 .then(data=>{console.log(data)})
                 .catch(e=>console.log(`error: ${e}`));
         // postData(test)
