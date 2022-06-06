@@ -34,12 +34,14 @@ const ProductAdd=({langs})=>{
         return res;
     }
     const showAddArea=areaClass?'add-area':'add-area add-area_hide';
+    const test=new FormData();
     const submitForm=()=>{
         nameInput.current.forEach(item=>{
             console.log(item.getAttribute('data-name'), item.getAttribute('value'));
+           // test.append(item.getAttribute('data-name'), item.getAttribute('value'));
 
         })
-    const test=new FormData();
+    
     files.forEach((item,i)=>{ 
         test.append(`product_img${i}`, item);
     })
@@ -47,12 +49,12 @@ const ProductAdd=({langs})=>{
     test.forEach(item=>{
         console.log(item);
     })
-        postFiles({parts:{data:test}})
+        postFiles(test,'http://ebel.lc/')
                 .then(data=>{console.log(data)})
                 .catch(e=>console.log(`error: ${e}`));
-        postData({parts:{data:test}})
-            .then(data=>{console.log(data)})
-            .catch(e=>console.log(`error: ${e}`));
+        // postData(test)
+        //     .then(data=>{console.log(data)})
+        //     .catch(e=>console.log(`error: ${e}`));
     // test.forEach(item=>{
     //     console.log(item);
     // })
