@@ -36,7 +36,8 @@ const img = {
 
 
 const UploadImages=({getFiles})=> {
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]),
+        [formData, setFormData]=useState(null);
 
   const {getRootProps, getInputProps} = useDropzone({
     accept: {
@@ -47,14 +48,22 @@ const UploadImages=({getFiles})=> {
             Object.assign(file, {
             preview: URL.createObjectURL(file)
           })
-      ));
+          ));
+          const tempData=new FormData();
+      setFormData(()=>{        
+        acceptedFiles.forEach((file,i)=>{
+          tempData.append(file.name, file);
+        })
+        return tempData;
+      })
 
     }
   });
   useEffect(()=>{
-    getFiles(files);
+    getFiles(files, formData);
+
     // eslint-disable-next-line
-  }, [files]);
+  }, [files, formData]);
 
   const thumbs = files.map(file => (
     <div style={thumb} key={file.name}>

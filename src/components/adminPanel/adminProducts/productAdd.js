@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import UploadImages from "../../uploadImages/uploadImages";
 import useConnectServer from "../../../services/connect/connect";
 
@@ -8,6 +8,7 @@ import './productAdd.scss';
 const ProductAdd=({langs})=>{
     const [areaClass, setAreaClass]=useState(false),
           [files, setFiles]=useState(null),
+          [formData, setFormData]=useState(null),
           nameInput=useRef([]),
           {postData, clearError, postFiles}=useConnectServer();
 
@@ -38,19 +39,43 @@ const ProductAdd=({langs})=>{
             console.log(item.getAttribute('data-name'), item.getAttribute('value'));
 
         })
-        // console.log(files);
-    const fileList=[];
-    files.forEach(file=>{
-        let reader=new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload= function() {
-            postData({parts:{data:reader.result}})
-                    .then(data=>{console.log(data)})
-                    .catch(e=>console.log(`error: ${e}`));
-            
-        }
-
+    const test=new FormData();
+    files.forEach((item,i)=>{ 
+        test.append(`product_img${i}`, item);
     })
+    console.log(test);
+    test.forEach(item=>{
+        console.log(item);
+    })
+        postFiles({parts:{data:test}})
+                .then(data=>{console.log(data)})
+                .catch(e=>console.log(`error: ${e}`));
+        postData({parts:{data:test}})
+            .then(data=>{console.log(data)})
+            .catch(e=>console.log(`error: ${e}`));
+    // test.forEach(item=>{
+    //     console.log(item);
+    // })
+    
+    // files.forEach((file,i)=>{
+        
+    //     let reader=new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onload= function() {            
+    //         clearError();
+    //         postData({parts:{data:reader.result}})
+    //                 .then(data=>{console.log(data)})
+    //                 .catch(e=>console.log(`error: ${e}`));
+    //     }
+
+    // })
+    
+    // clearError();
+    // postData({parts:{data:fileList}})
+    //         .then(data=>{console.log(data)})
+    //         .catch(e=>console.log(`error: ${e}`));
+
+
         // clearError();
         // console.log(fileList);
         // postData({parts:{data:files.map(file=>{
@@ -71,9 +96,9 @@ const ProductAdd=({langs})=>{
         
         
     }
-    const getFiles=(files)=>{
-        
+    const getFiles=(files, formData)=>{        
         setFiles(files);
+        setFormData(formData);
     }
     return(
         <div className="product_add">
@@ -82,7 +107,7 @@ const ProductAdd=({langs})=>{
                 <div className={showAddArea}>
                     <div className="des">Заполните все поля ниже:</div>                    
                         {listLangsName()}
-                        <UploadImages getFiles={(files)=>getFiles(files)}/>
+                        <UploadImages getFiles={(files, formData)=>getFiles(files, formData)}/>
                     <button onClick={submitForm}>Отправить</button>                    
                 </div>
             </div>
