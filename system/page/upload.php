@@ -13,7 +13,11 @@
 
         public function content()
         {
-            $this -> cout(Main :: $obj -> files);
+            $obj = array();
+            $obj['url'] = Main :: $obj -> url;
+            $obj['files'] = Main :: $obj -> files;
+
+            $this -> cout($obj);
         }
 
 	}	
