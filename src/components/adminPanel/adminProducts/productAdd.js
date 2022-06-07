@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import UploadImages from "../../uploadImages/uploadImages";
 import useConnectServer from "../../../services/connect/connect";
+import { Spinner } from "../../spinner/spinner";
 
 
 import './productAdd.scss';
@@ -8,9 +9,8 @@ import './productAdd.scss';
 const ProductAdd=({langs})=>{
     const [areaClass, setAreaClass]=useState(false),
           [files, setFiles]=useState(null),
-          [formData, setFormData]=useState(null),
           nameInput=useRef([]),
-          {postData, clearError, postFiles}=useConnectServer();
+          {postData, clearError, postFiles, loading}=useConnectServer();
 
     const listLangsName=()=>{
         nameInput.current=[];
@@ -35,79 +35,52 @@ const ProductAdd=({langs})=>{
     }
     const showAddArea=areaClass?'add-area':'add-area add-area_hide';
     const test=new FormData();
-    // let details='?parts={data:';
+    const names={};
     const submitForm=()=>{
         nameInput.current.forEach(item=>{
-            console.log(item.getAttribute('data-name'), item.getAttribute('value'));
-        //   details+=`${item.getAttribute('data-name')}: ${item.getAttribute('value')}`;
-
+            names[item.getAttribute('data-name')]= item.getAttribute('value');
         })
-    // details+='}';
-    files.forEach((item,i)=>{ 
-        test.append(`product_img${i}`, item);
-    })
-    // console.log(test);
-    // test.forEach(item=>{
-    //     console.log(item);
-    // })
-        postFiles(test,`http://ebel.lc/upload/01`)
+
+        files.forEach((item,i)=>{ 
+            test.append(`product_img${i}`, item);
+        })
+        clearError();
+        postData({parts:{data:{
+            name:{...names},
+            descr:{
+                en:'ssa',
+                ru:'asda',
+            },
+            set:[],
+            cat:[0],
+            subCat:[0]
+        }}})
+            .then(data=>{
+                console.log(data);
+                const id=1;
+                postFiles(test,`http://ebel.lc/upload/${id}`)
                 .then(data=>{console.log(data)})
-                .catch(e=>console.log(`error: ${e}`));
-        // postData(test)
-        //     .then(data=>{console.log(data)})
-        //     .catch(e=>console.log(`error: ${e}`));
-    // test.forEach(item=>{
-    //     console.log(item);
-    // })
-    
-    // files.forEach((file,i)=>{
-        
-    //     let reader=new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onload= function() {            
-    //         clearError();
-    //         postData({parts:{data:reader.result}})
-    //                 .then(data=>{console.log(data)})
-    //                 .catch(e=>console.log(`error: ${e}`));
-    //     }
+                .catch(e=>console.log(`error request in add files: ${e}`));
+            })
+            .catch(e=>console.log(`error request in add information: ${e}`))
 
-    // })
-    
-    // clearError();
-    // postData({parts:{data:fileList}})
-    //         .then(data=>{console.log(data)})
-    //         .catch(e=>console.log(`error: ${e}`));
-
-
-        // clearError();
-        // console.log(fileList);
-        // postData({parts:{data:files.map(file=>{
-        //     let reader=new FileReader();
-        //     reader.readAsDataURL(file);
-        //     reader.onload= function() {
-        //         return reader.result;
-                
-        //     }
-        // })}})
-        //         .then(data=>{
-        //             console.log(fileList, data)
-        //         })
-        //         .catch(e=>{
-        //             console.log(fileList);
-        //             console.log('error:  ', e);
-        //         })
-        
-        
     }
     const getFiles=(files, formData)=>{        
         setFiles(files);
-        setFormData(formData);
+    }
+    const ShowLoad=()=>{
+        return(
+            <div className="show-spiner">
+                <Spinner/>
+            </div>
+        )
     }
     return(
         <div className="product_add">
             <div className="label" onClick={()=>setAreaClass(areaClass=>!areaClass)}>------Добавить------</div>
             <div className="container">
                 <div className={showAddArea}>
+                    {loading?<ShowLoad/>:null}
                     <div className="des">Заполните все поля ниже:</div>                    
                         {listLangsName()}
                         <UploadImages getFiles={(files, formData)=>getFiles(files, formData)}/>
