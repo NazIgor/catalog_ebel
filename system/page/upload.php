@@ -21,9 +21,10 @@
         {
             $id    = Main :: $obj -> url[1];
             $files = Main :: $obj -> files;
-            $msg = [];
-            $dir = 'images/product_'.$id.'/';
-            $path = DOCROOT.DIRECTORY_SEPARATOR.$dir;
+            $msg   = [];
+            $dir   = 'images/product_'.$id.'/';
+            $path  = DOCROOT.DIRECTORY_SEPARATOR.$dir;
+
             @Main :: $obj -> dirc() -> open($path);
             
             foreach($files as $file)

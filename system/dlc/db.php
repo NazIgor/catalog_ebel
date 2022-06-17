@@ -103,7 +103,7 @@
 
             foreach($data as $key => $value)
             {
-                $value = preg_replace("/(`|\\\\|\/|\{|\}|\[|\]|%)+/", '', $value);
+                //$value = preg_replace("/(`|\\\\|\/|\{|\}|\[|\]|%)+/", '', $value);
 
                 foreach(array('"', '\'', ')', '(') as $char)
                 {
