@@ -52,10 +52,10 @@
                                        -> where("target_id=".$item['id']." AND target_table='ui'")
                                        -> execute();
                 
-                $res[$item['id']]['name'] = $item['name'];
+                $res[$item['name']] = [];
                 foreach($locale as $l)
                 {
-                    $res[$item['id']][$this -> lng[$l['language']]['name']] = $l['value'];
+                    $res[$item['name']][$this -> lng[$l['language']]['name']] = $l['value'];
                 }
             }
 
