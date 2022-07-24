@@ -21,7 +21,9 @@
 
             $res['languages'] = $ui -> getLng();
 
-            $res['language'] = Main :: $obj -> language ? Main :: $obj -> language : $res['languages'][1];
+            $res['language'] = Main :: $obj -> language ? 
+                $ui -> getLng(Main :: $obj -> language) :
+                $res['languages'][0];
 
             $this -> cout($res);
 

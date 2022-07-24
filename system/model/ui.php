@@ -35,12 +35,12 @@
             return $ui;
 		}
 
-        public function getLng()
+        public function getLng($id = FALSE)
         {
-            return $this -> lng['list'];
+            return $id ? $this -> lng[$id] : $this -> lng['list'];
         }
 
-        public function get($id = FALSE)
+        public function get($name = FALSE)
         {
             
             $res = [];
@@ -59,7 +59,7 @@
                 }
             }
 
-            return $id ? $res[$id] : $res;
+            return $name ? $res[$name] : $res;
         }
 
         public function set($data)
@@ -76,7 +76,7 @@
                     $res = Main :: $obj -> db()
                                         -> write('locale', ['target_id'    => $id,
                                                             'target_table' => 'ui',
-                                                            'language'     => $this -> lng[$key]['id'],
+                                                            'language'     => $key,
                                                             'value'        => $value])
                                         -> execute();
                 }

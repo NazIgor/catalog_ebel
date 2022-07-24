@@ -15,8 +15,9 @@
 
         public function action($data)
         {
+            $lng = $this -> ui();
             Main :: $obj -> language = $data -> language;
-            if (Main :: $obj -> language == $data -> language) $this -> cout('ok');
+            if (Main :: $obj -> language == $data -> language) $this -> cout($lng -> getLng($data -> language));
         }
 	}	
 ?>
