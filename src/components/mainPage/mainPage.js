@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import useConnectServer from "../../services/connect/connect";
 
+
 import { Spinner } from "../spinner/spinner";
 import ErrorLoading from "../errorLoading/errorLoading";
 
@@ -11,6 +12,7 @@ const MainPage=(props)=>{
           [lang, setLang]=useState(props.lang);
 
     useEffect(()=>{  
+        
         clearError();
         postData({getlocale:''})
                 .then(data=>{

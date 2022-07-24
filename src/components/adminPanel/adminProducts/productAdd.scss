@@ -32,10 +32,15 @@
             height: 100%;
             & .des{
                 margin-top: 25px;
+                margin-bottom: 15px;
+
+                font-size: 1.5em;
+                font-weight: 500;
             }
             & input{
                 font-size: 1em;
                 margin: 3px 0 3px 2px;
+                padding: 5px;
 
                 width: 30%;
             }
@@ -56,10 +61,50 @@
                 height: 100%;
                 background-color: rgba(160,160,170,0.3);
             }
+            & .names{
+                margin-top: 20px;
+                font-size: 1.2em;
+                font-weight: 500;
+            }
+            & .descr-txtArea{
+                width: 90%;
+                height: 125px;
+                margin-top: 10px;
+                padding: 5px;
+                font-size: 1.3em;
+            }
         }
         & .add-area_hide{
             height: 1px;
             overflow: hidden;
         }
     }
+}
+.admin_add_catalogs{
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+.admin_catalogs{
+    margin-top: 15px;
+}
+.admin_add_sets{
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    & ul{
+        list-style-type: none;
+        & li{
+            display: flex;
+            margin-top: 5px;
+            & label{
+                display: contents;
+                
+            }
+        }
+    }
+}
+.mr5{
+    margin-right: 5px;
 }

@@ -27,7 +27,7 @@ const App=()=>{
 
     useEffect(()=>{  
         clearError();
-        postData({getlocale:''})
+        postData({getUI:''})
                 .then(data=>{
                     setUIdata(data);
                     setLang(data.Getlocale.language);

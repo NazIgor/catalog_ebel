@@ -2,7 +2,7 @@
 
 .admin-panel{
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     width: 100%;
     height: 100%;
 
@@ -15,4 +15,8 @@
     padding: 15px;
     overflow: overlay;
     
+}
+.error-loading{
+    width: 100%;
+    text-align: center;
 }
