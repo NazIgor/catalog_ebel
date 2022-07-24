@@ -45,7 +45,7 @@ const AdminPanel=(props)=>{
             case 'ui':
                 return (
                     <div className="admin-container">
-                        <AddPage lang={props.lang} langs={props.langs} uIData={props.uiData.Getlocale}/>
+                        <AddPage lang={props.lang} langs={props.langs} uIData={props.uiData.GetUI}/>
                     </div>
                 );
             case 'catalog':

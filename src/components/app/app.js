@@ -43,7 +43,7 @@ const App=()=>{
     const changeLang=(lang)=>{
         postData({setLanguage:{'language':lang}})
                 .then(data=>{
-                    setLang(lang);
+                    setLang(data.SetLanguage);
                 })
                 .catch((e)=>{
                     console.log(`request error: ${e}`);

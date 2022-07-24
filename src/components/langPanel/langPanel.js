@@ -9,7 +9,7 @@ const LangPanel=({lang, langs,changeLang})=>{
                 return(
                     <div className={classItem}
                          key={`lang_${item.id}`}
-                         data-lang={item.name}
+                         data-lang={item.id}
                          onClick={e=>changeLang(e.target.getAttribute('data-lang'))}>
                         {item.name.toUpperCase()}
                     </div>

@@ -5,6 +5,7 @@ import {Spinner} from '../spinner/spinner';
 import './addPage.scss';
 
 const AddPage=({lang, langs, uIData})=>{
+    
     const {postData, loading}=useConnectServer(),
           [uiData, setUIData]= useState(uIData);
     
@@ -34,9 +35,9 @@ const AddPage=({lang, langs, uIData})=>{
                 .catch(e=>console.log(e));
     }
     const updateUIDate=()=>{
-        postData({getlocale:''})
+        postData({getUI:''})
                 .then(data=>{
-                    setUIData(data.Getlocale);
+                    setUIData(data.GetUI);
                 }).catch(e=>console.log('error update UI Data, ',e));
     }
     const uploadData=()=>{
@@ -67,11 +68,12 @@ const AddPage=({lang, langs, uIData})=>{
     const returnLangs=()=>{
         const lll= langs.map(item=>{
             return (
-                <input type="text" key={item} id={item} placeholder={item}/>
+                <input type="text" key={`addUI_${item.name}`} id={item.id} placeholder={item.fullName}/>
             )
         });
         return lll;
     }
+    console.log(uiData);
     return(
         <div className="add-ui">
             <h3>{uiData.lb_add[lang]} </h3>
