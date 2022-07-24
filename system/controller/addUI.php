@@ -15,9 +15,19 @@
 
         public function action($data)
         {
-            $this -> cout(Main :: $obj -> db()
-                                       -> write('locale', $data)
-                                       -> execute());
+            /*$this -> cout(Main :: $obj -> db()
+                                       -> write('local', $data)
+                                       -> execute());*/
+            $this -> add($data);
+
+        }
+
+        public function add($data)
+        {
+            if (empty($data)) return FALSE;
+
+            $this -> cout($this -> ui() -> set((array)$data));
+            
         }
 	}	
 ?>

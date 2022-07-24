@@ -24,7 +24,7 @@
         private function load()
         {
             $data = Main :: $obj -> db()
-                                 -> read('locale')
+                                 -> read('local')
                                  -> execute();
 
             return Main :: $obj -> filec(Main :: $obj -> tmppath.'locale')
@@ -34,9 +34,10 @@
 
         private function synch()
         {
-            $old_data = Main :: $obj -> db()
-                                     -> read('locale')
-                                     -> execute();
+            
+            $ui = $this -> ui();
+
+            $old_data = $ui -> get();
 
             $file_data = json_decode(Main :: $obj -> filec(Main :: $obj -> tmppath.'locale')
                                                   -> read('r')
@@ -57,9 +58,7 @@
                     unset($item['id']);
                     $new_data[] = $item;
                     
-                    $res = Main :: $obj -> db()
-                                        -> write('locale', $item)
-                                        -> execute();
+                    $res = $ui -> set($item);
 
                     if (@$res['write'] === 'error')
                     {

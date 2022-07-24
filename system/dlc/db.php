@@ -53,23 +53,27 @@
             if ($to === FALSE OR $to === NULL) return $this;
 
             $to_arr = array();
+            $str = '';
             
             if (is_numeric($to))
             {
                 $to_arr[0] = "id";
                 $to_arr[1] = $to;
+                $str = 'id='.$to;
             }
             elseif (is_string($to))
             {
                 if (strpos($to, '=') === FALSE) return $this;
                 $to_arr = @explode("=", $to);
+                $str = $to;
             }
 
             if ($this -> method == "write") $this -> query_string = $this -> query_update();
 
-            $this -> query_string = isset($to_arr[1]) ?
+            /*$this -> query_string = isset($to_arr[1]) ?
                 $this -> query_string." WHERE `".$to_arr[0]."` = '".$to_arr[1]."'" :
-                "";
+                "";*/
+            $this -> query_string .= ' WHERE '.$str;
 			
 			return $this;
 			

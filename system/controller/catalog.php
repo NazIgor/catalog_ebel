@@ -46,6 +46,22 @@
             $this -> cout($res);
         }
 
+        private function all()
+        {
+            $cat = Main :: $obj -> db()
+                                -> read('catalogs')
+                                -> execute();
+            $sub = Main :: $obj -> db()
+                                -> read('sub_catalog')
+                                -> execute();
+
+            if (@$cat['read'] === 'error' OR $sub['read'] === 'error') $this -> alert('error read catalogs');
+
+            foreach($cat as $c)
+            {
+            }
+        }
+
         private function write($data)
         {
             $query = (array)$data;

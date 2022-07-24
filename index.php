@@ -97,7 +97,7 @@ define('DOCROOT', realpath(dirname(__FILE__)));
 
 
 
-		protected static function classload($type, $class_name)// функция загрузки классов
+		public static function classload($type, $class_name)// функция загрузки классов
 		{
 			$path = (self :: $obj -> syspath).$type.DIRECTORY_SEPARATOR;
 

@@ -1,7 +1,7 @@
 <?php defined('DOCROOT') OR die('No direct script access.');
 	/*
 	#
-	#  project: "autosalon"
+	#  project: "ebel"
 	#  file: page.php
 	#  date: 07.02.2022
 	#  author: Medvedev Alexandr

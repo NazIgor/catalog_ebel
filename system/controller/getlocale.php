@@ -16,7 +16,7 @@
         public function action($data)
         {
             $loc = Main :: $obj -> db()
-                                -> read('locale')
+                                -> read('local')
                                 -> execute();
 
             $res = Array();

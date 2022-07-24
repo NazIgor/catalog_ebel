@@ -40,7 +40,7 @@
 
         public function __call($f, $arg)
         {
-            $this -> alert("unknown method ".$f.'; args: '.serialize($arg), type: 'warning');
+            return Main :: classload('model', $f) ? $f :: init($arg) : FALSE;
         }
 
         public function cout($data, $reset = FALSE)

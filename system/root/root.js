@@ -159,7 +159,7 @@
                 //console.log(msg);
                 if (msg.isJson()) msg = JSON.parse(msg);
                 space = space || '';
-                let twospace = space;
+                let twospace = space + "   ";
 
                 switch(toString.call(msg)) {
                     case '[object Array]':
@@ -223,7 +223,7 @@
                 return;
             }
             if (!queryStr.isJson()) {
-                this.execute(queryStr + ' is not JSON string example - {"props": "value"}');
+                this.execute(queryStr + ' is not JSON string! Example - {"props": "value"}');
                 return;
             }
             const request = JSON.parse(queryStr);
