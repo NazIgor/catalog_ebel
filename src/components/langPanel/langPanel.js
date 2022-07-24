@@ -1,17 +1,17 @@
 import './langPanel.scss';
 
 const LangPanel=({lang, langs,changeLang})=>{
-
+    console.log('from lang panel: ', langs);
     const createLangs=()=>{        
            const res= langs.map(item=>{
-                const txt=item,
+                const txt=item.name,
                       classItem="lang-panel_item "+txt;
                 return(
                     <div className={classItem}
-                         key={item}
-                         data-lang={item}
+                         key={`lang_${item.id}`}
+                         data-lang={item.name}
                          onClick={e=>changeLang(e.target.getAttribute('data-lang'))}>
-                        {item.toUpperCase()}
+                        {item.name.toUpperCase()}
                     </div>
                 )
             })  

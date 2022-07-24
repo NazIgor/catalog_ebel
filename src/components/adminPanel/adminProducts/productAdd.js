@@ -94,16 +94,16 @@ const ProductAdd=({langs})=>{
                 return (
                     type==='names'? 
                     <input  type="text" 
-                            key={`input${item}`} 
-                            placeholder={item} 
-                            data-name={item} 
+                            key={`input${item.id}`} 
+                            placeholder={item.fullName} 
+                            data-name={item.id} 
                             value={value} 
                             onChange={onInput} 
                             ref={(input)=>setInputList(input)}/> :
-                    <textarea name={`descr-${item}`} 
-                              key={`txtArea${item}`} 
-                              placeholder={item} 
-                              data-name={item} 
+                    <textarea name={`descr-${item.name}`} 
+                              key={`txtArea${item.id}`} 
+                              placeholder={item.fullName} 
+                              data-name={item.id} 
                               value={value} 
                               cols="30" rows="10"
                               className="descr-txtArea"

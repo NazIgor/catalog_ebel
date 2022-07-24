@@ -12,12 +12,12 @@ import AdminProducts from "./adminProducts/adminProducts";
 import './adminPanel.scss';
 
 const AdminPanel=(props)=>{
-    
-    const [lang, setLang]=useState(props.lang),
+    console.log(props);
+    const [lang, setLang]=useState('ru'),
           [target, setTarget]=useState('start'),
           {postData, clearError, error, loading}=useConnectServer(),
-          [uidata, setUIData]=useState(null),
-          {langs}=props;;
+          [uidata, setUIData]=useState(props.uiData ? props.uiData.GetUI: null),
+          {langs}=props;
 
     useEffect(()=>{
         setLang(lang=>props.lang);
@@ -26,15 +26,17 @@ const AdminPanel=(props)=>{
     },[props.lang])
 
     useEffect(()=>{
-        initUIdata();
+        if (!props.uiData){
+            initUIdata();
+        }
          // eslint-disable-next-line
     },[])
 
     const initUIdata=()=>{
         clearError();
-        postData({getlocale:''})
+        postData({getUI:''})
                 .then(data=>{ 
-                    setUIData(data.Getlocale);
+                    setUIData(data.GetUI);
                 })
                 .catch(e=>console.log('error get data from server: ',e));
     }

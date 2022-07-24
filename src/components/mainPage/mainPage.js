@@ -14,7 +14,7 @@ const MainPage=(props)=>{
     useEffect(()=>{  
         
         clearError();
-        postData({getlocale:''})
+        postData({getUI:''})
                 .then(data=>{
                     setUIData(uiData=>data);
                 })

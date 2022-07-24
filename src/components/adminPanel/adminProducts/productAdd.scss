@@ -88,6 +88,9 @@
 }
 .admin_catalogs{
     margin-top: 15px;
+    & label{
+        cursor: pointer;
+    }
 }
 .admin_add_sets{
     width: 100%;
@@ -98,9 +101,10 @@
         & li{
             display: flex;
             margin-top: 5px;
+            
             & label{
                 display: contents;
-                
+                cursor: pointer;
             }
         }
     }

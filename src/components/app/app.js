@@ -19,9 +19,9 @@ const AdminPanel=lazy(()=>import ("../adminPanel/adminPanel"));
 const MainPage = lazy (()=>import ('../mainPage/mainPage'));
 
 const App=()=>{
-    const [lang, setLang]=useState(null),
+    const [lang, setLang]=useState('ru'),
           [uiData, setUIdata]=useState(null),
-          [langs, setLangs]=useState(['ru']);
+          [langs, setLangs]=useState([{id:null, name:'ru'}]);
     const {clearError, postData}=useConnectServer();
 
 
@@ -29,9 +29,10 @@ const App=()=>{
         clearError();
         postData({getUI:''})
                 .then(data=>{
+                    
                     setUIdata(data);
-                    setLang(data.Getlocale.language);
-                    setLangs(data.Getlocale.languages);
+                    setLang(data.GetUI.language);
+                    setLangs(data.GetUI.languages);
                 })
                 .catch((e)=>{
                     console.log(`request error: ${e}`);

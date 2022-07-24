@@ -4,6 +4,7 @@
 import './adminSide.scss';
 
 const AdminSide=({uiData, loading, lang, contentChange})=>{
+    console.log(lang, uiData);
     const loadBtns=()=>{
         return(
             <ul onClick={contentChange}>
