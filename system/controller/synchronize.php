@@ -23,9 +23,7 @@
 
         private function load()
         {
-            $data = Main :: $obj -> db()
-                                 -> read('local')
-                                 -> execute();
+            $data = $this -> ui() -> get();
 
             return Main :: $obj -> filec(Main :: $obj -> tmppath.'locale')
                                 -> write(json_encode($data), 'w')
