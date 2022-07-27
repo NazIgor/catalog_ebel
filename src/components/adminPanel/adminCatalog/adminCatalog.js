@@ -38,7 +38,6 @@ const AdminCatalog=({lang,langs})=>{
                 .catch(e=>console.log('error read catalogs, ', e));
     }
     const updateCatList=(id, data)=>{
-        console.log(id);
         if (id){
             setSubCatList(data);
             setSubTrigger(false);
@@ -47,11 +46,14 @@ const AdminCatalog=({lang,langs})=>{
         }
     }    
     const addCats=(type,id)=>{        
-        const request={};
+        const request={langs:[]};
         request.action='write';
         langs.forEach(item => {
-            request[item]=document.querySelector(`input[data-target=${type}-${item}]`).value;
-            document.querySelector(`input[data-target=${type}-${item}]`).value='';
+            let langDescr={};
+            langDescr.id=item.id
+            langDescr.value=document.querySelector(`input[data-target=${type}-${item.name}]`).value;
+            request.langs.push(langDescr);
+            document.querySelector(`input[data-target=${type}-${item.name}]`).value='';
         });
         if (id){
             request.id=id;
@@ -106,7 +108,7 @@ const AdminCatalog=({lang,langs})=>{
     const returnInputsName=(typeCatalog)=>{
         const res=langs.map((item,i)=>{
             return(
-                <input type="text" className='addCat-input' data-lang={item} data-target={`${typeCatalog}-${item}`} placeholder={item} key={`${typeCatalog}-${item} ${i}`} />
+                <input type="text" className='addCat-input' data-lang={item.name} data-target={`${typeCatalog}-${item.name}`} placeholder={item.fullName} key={`${typeCatalog}-${item.name} ${i}`} />
             )
         })
         return res;
@@ -127,7 +129,7 @@ const AdminCatalog=({lang,langs})=>{
         const res=mainCatList.map(item=>{
             return (
                 <li key={`${type}${item.id}`}>
-                    <div className="item"  data-mainid={item.id}>{item[lang]} <img src={deleteImg} alt="delete" onClick={e=>onDeleteCat(e,'data-mainid')} /></div>
+                    <div className="item"  data-mainid={item.id}>{item[lang.name]} <img src={deleteImg} alt="delete" onClick={e=>onDeleteCat(e,'data-mainid')} /></div>
                 </li>
             )
         })
@@ -137,7 +139,7 @@ const AdminCatalog=({lang,langs})=>{
         const res=subCatList.map(item=>{
             return (
                 <li className="items-elem" key={`sub${item.id}`}>
-                    <div className="item" data-subid={item.id}>{item[lang]} <img src={deleteImg} alt="delete" onClick={e=>onDeleteCat(e,'data-subid')}/></div>
+                    <div className="item" data-subid={item.id}>{item[lang.name]} <img src={deleteImg} alt="delete" onClick={e=>onDeleteCat(e,'data-subid')}/></div>
                 </li>
             )
         })

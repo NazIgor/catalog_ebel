@@ -136,28 +136,34 @@ const ProductAdd=({langs})=>{
 
         const checksCats=getCheckCats(document.querySelector('.admin_add_catalogs').querySelectorAll('.cats_items'));
         
-        console.log(checksCats, checksSets);
-
-
-        // postData({parts:{data:{
-        //     name:{...names},
-        //     descr:{...descr},
-        //     set:[...checksSets.sets],
-        //     cat:[...checksCats.cats],
-        //     subCat:[...checksCats.subCat]
-        // }}})
-        //     .then(data=>{
-        //         console.log(data);
-        //         console.log(files.length);
-        //         const id=1;
-        //         if(files.length){
-        //             postFiles(test,`http://ebel.lc/upload/${id}`)
-        //                     .then(data=>{console.log(data)})
-        //                     .catch(e=>console.log(`error request in add files: ${e}`));
-        //         }
+        // console.log(checksCats, checksSets);
+        // let data={
+        //         name:{...names},
+        //         descr:{...descr},
+        //         sets:checksSets.sets,
+        //         cats:checksCats.cats,
+        //         subCats:checksCats.subCats
+        // };
+        // console.log(data);
+        postData({parts:{data:{
+                    name:{...names},
+                    descr:{...descr},
+                    sets:checksSets.sets,
+                    cats:checksCats.cats,
+                    subCats:checksCats.subCats
+        }}})
+            .then(data=>{
+                console.log(data);
+                console.log(files.length);
+                const id=1;
+                if(files.length){
+                    postFiles(test,`http://ebel.lc/upload/${id}`)
+                            .then(data=>{console.log(data)})
+                            .catch(e=>console.log(`error request in add files: ${e}`));
+                }
                 
-        //     })
-        //     .catch(e=>console.log(`error request in add information: ${e}`))
+            })
+            .catch(e=>console.log(`error request in add information: ${e}`))
 
     }
     const getFiles=(files, formData)=>{        

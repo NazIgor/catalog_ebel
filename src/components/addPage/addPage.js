@@ -5,22 +5,25 @@ import {Spinner} from '../spinner/spinner';
 import './addPage.scss';
 
 const AddPage=({lang, langs, uIData})=>{
-    
+
     const {postData, loading}=useConnectServer(),
           [uiData, setUIData]= useState(uIData);
     
     const sendData=()=>{
-        let dataForPost={};
+        let dataForPost={name:'', langs:[]};
         langs.forEach(item=>{
-            dataForPost[item]=document.getElementById(item).value;
-            document.getElementById(item).disabled=true;
+            let addLang={};
+            addLang.id=item.id;
+            addLang.value=document.getElementById(item.id).value;
+            //document.getElementById(item.id).disabled=true;
+            dataForPost.langs.push(addLang);
         })
-        dataForPost['name']=document.getElementById('lang-name').value;
-        document.getElementById('lang-name').disabled=true;
-        if (dataForPost.name==='' || dataForPost.ru===''){
+        dataForPost.name=document.getElementById('lang-name').value;
+        //document.getElementById('lang-name').disabled=true;
+        if (dataForPost.name==='' || document.getElementById('1').value===''){
             alert ('заполните обязательные поля NAME, RU');
             return;
-        }
+        }       
         postData({addUI:dataForPost})
                 .then(data=>{
                     langs.forEach(item=>{
@@ -29,12 +32,12 @@ const AddPage=({lang, langs, uIData})=>{
                     })
                     document.getElementById('lang-name').value='';
                     document.getElementById('lang-name').disabled=false;
-                    updateUIDate();
+                    updateUIData();
                     alert('UI element added !!!');
                 })
                 .catch(e=>console.log(e));
     }
-    const updateUIDate=()=>{
+    const updateUIData=()=>{
         postData({getUI:''})
                 .then(data=>{
                     setUIData(data.GetUI);
@@ -73,10 +76,10 @@ const AddPage=({lang, langs, uIData})=>{
         });
         return lll;
     }
-    console.log(uiData);
+
     return(
         <div className="add-ui">
-            <h3>{uiData.lb_add[lang]} </h3>
+            <h3>{uiData.lb_add[lang.name]} </h3>
             <input type="text" id="lang-name" placeholder="name"></input>
             {returnLangs()}
             <button onClick={()=>{sendData()}}>Исчо давай!!</button>
