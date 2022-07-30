@@ -21,7 +21,7 @@ const AdminPanel=(props)=>{
 
     useEffect(()=>{
         setLang(lang=>props.lang);
-        console.log('change lang to: ', lang);
+        console.log('change lang to: ', lang.name);
          // eslint-disable-next-line
     },[props.lang])
 
@@ -66,7 +66,7 @@ const AdminPanel=(props)=>{
             <div className="admin-container">
                 <h3>Админ панель!</h3>
                 <p>.........................</p>
-                <NavLink to="/">Перейти на главную страницу  {uidata.button_send[lang]}</NavLink>
+                <NavLink to="/">Перейти на главную страницу  {uidata.button_send[lang.name]}</NavLink>
             </div>
         )
     }

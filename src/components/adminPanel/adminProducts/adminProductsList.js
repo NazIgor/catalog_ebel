@@ -22,8 +22,8 @@ const AdminProductsList=({lang, data})=>{
                 <li key={`prod${item.id}-${i}`}>
                     <div className="item" data-proid={item.id} key={`prod${item.id}-${i}`}>
                         <div className="description">
-                            <h3>{item.name[lang]}</h3>
-                            <div>{item.descr[lang]}</div>
+                            <h3>{item.name[lang.name]}</h3>
+                            <div>{item.descr[lang.name]}</div>
                             <div><strong>$ {(Math.round(item.price*100)/100).toLocaleString('ru-RU')}</strong></div><br></br>
                         </div>
                         <div className="imgs">
