@@ -12,7 +12,8 @@
 
 		public static function init()
 		{
-			$ui = new self;
+			$ui = Main :: $obj -> cache() -> get(__CLASS__);
+            
             $ui -> row = Main :: $obj -> db()
                                       -> read('ui')
                                       -> execute();
@@ -69,17 +70,14 @@
                                -> write('ui', ['name' => $data['name']])
                                -> execute()['write'];
             
-            foreach($data as $key => $value)
+            foreach($data['langs'] as $lang)
             {
-                if ($key != 'name')
-                {
-                    $res = Main :: $obj -> db()
-                                        -> write('locale', ['target_id'    => $id,
-                                                            'target_table' => 'ui',
-                                                            'language'     => $key,
-                                                            'value'        => $value])
-                                        -> execute();
-                }
+                $res = Main :: $obj -> db()
+                                    -> write('locale', ['target_id'    => $id,
+                                                        'target_table' => 'ui',
+                                                        'language'     => $lang['id'],
+                                                        'value'        => $lang['value']])
+                                    -> execute();
             }
 
             return $res['write'] === 'error' ? $res : $this -> get();

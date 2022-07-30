@@ -1,13 +1,17 @@
 description controllers
 
 #addUI
-    {addUI: {name: "str.name", ru: "str.value", en: "str.value", kz: "str.value"}};
+    {addUI: { name: "str.name",
+             lengs: [
+                'id': 1,
+                'value': 'str.value'
+             }};
 
-#getlocale
-    {getlocale: {}};
+#getUI
+    {getUI: {}};
 
 #setLanguage
-    {setLanguage: {language: "ru || en || kz"}}
+    {setLanguage: {language: "1 || 2 || 3 ..."}}
 
 #synchronize
     {synchronize: {action: "load || synch"}};
@@ -16,3 +20,6 @@ description controllers
     {catalog: {action: "read || write", (не обязательный параметр)id: "int.id"}};
 #catalog delete
     {catalog: {action: "del", id = "int.id", target = "cat||subCat"};
+
+#catalog // Получение массива всех каталогов и подкаталогов
+    {catalog: {action: "all"}}

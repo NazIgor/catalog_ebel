@@ -194,7 +194,12 @@
             $this -> method = "discribe";
             return $this;
         }
-	
+	    
+        public function sql($query)
+        {
+            $this -> query_string = $query;
+            return $this -> execute();
+        }
 		
 		public function execute()//___________________________________EXECUTE_____________________________
 		{

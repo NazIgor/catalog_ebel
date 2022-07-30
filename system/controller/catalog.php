@@ -48,18 +48,68 @@
 
         private function all()
         {
-            $cat = Main :: $obj -> db()
-                                -> read('catalogs')
-                                -> execute();
-            $sub = Main :: $obj -> db()
-                                -> read('sub_catalog')
-                                -> execute();
-
-            if (@$cat['read'] === 'error' OR $sub['read'] === 'error') $this -> alert('error read catalogs');
-
-            foreach($cat as $c)
+            $catalogs = $this->catalogs()->get_catalog();
+            $sub_catalogs = $this->catalogs()->get_sub_catalog();
+            
+            $result = [];
+            foreach($catalogs as $catalog)
             {
+                if (empty($result[$catalog['id_cat']]))
+                {
+                    $result[$catalog['id_cat']] = [
+                        'img'  => $catalog['image_cat'],
+                        'sort' => $catalog['sort_cat'],
+                        'lang' => [
+                             0 => [
+                                  'id'        => $catalog['language'],
+                                  'id_locale' => $catalog['id_locale'],
+                                  'value'     => $catalog['value']
+                             ]
+                        ],
+                        'items' => []
+                    ];
+                }
+                else
+                {
+                    $result[$catalog['id_cat']]['lang'][] = [
+                        'id'        => $catalog['language'],
+                        'id_locale' => $catalog['id_locale'],
+                        'value'     => $catalog['value']
+                    ];
+                }
             }
+
+            foreach($sub_catalogs as $sub_catalog)
+            {
+                if (!empty($result[$sub_catalog['catalog']]))
+                {
+                    if (empty($result[$sub_catalog['catalog']]['ites'][$sub_catalog['id_subcat']]))
+                    {
+                        $result[$sub_catalog['catalog']]['items'][$sub_catalog['id_subcat']] = [
+                            'img'  => $sub_catalog['image_subcat'],
+                            'sort' => $sub_catalog['sort_subcat'],
+                            'lang' => [
+                                 0 => [
+                                     'id'        => $sub_catalog['language'],
+                                     'id_locale' => $sub_catalog['id_locale'],
+                                     'value'     => $sub_catalog['value']
+                                 ]
+                            ]
+                        ];
+                    }
+                    else
+                    {
+                        $result[$sub_catalog['catalog']]['items'][$sub_catalog['idsubcat']]['lang'][] = [
+                            'id'        => $sub_catalog['language'],
+                            'id_locale' => $sub_catalog['id_locale'],
+                            'value'     => $sub_catalog['value']
+                        ];
+                    }
+                }
+            }
+            $this->cout($sub_catalogs);
+
+            $this->cout($result);
         }
 
         private function write($data)
