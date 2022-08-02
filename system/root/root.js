@@ -16,6 +16,7 @@
         constructor(d){
             this.data = d;
             this.path = '';
+            this.res;
         }
 
         setPath(path) {
@@ -27,18 +28,23 @@
 
             const request = JSON.stringify(this.data);
             
-//console.log(request);
+            try {
+                this.res = await fetch(this.path, {
+                    method: 'POST',
+                    headers: {'Content-type': 'application/x-www-form-urlencoded'},
+                    body: request});
 
-            const res = await fetch(this.path, {
-                method: 'POST',
-                headers: {'Content-type': 'application/x-www-form-urlencoded'},
-                body: request});
+                if (!res.ok){
+                    throw new Error('Error request');
+                }
 
-            if (!res.ok){
-                throw new Error('Error request');
+                return await this.res.json();
+            } catch {
+                let out = await this.res.text();
+                return {
+                    'error': out
+                };
             }
-
-            return await res.json();
 
         }
     }
@@ -50,6 +56,7 @@
             this.historyCommand = [];
             this.posHistory = 0;
             this.userKey = "[root@ebel ~]# ";
+            this.tab = '  ';
 
             this.cmd = document.createElement("textarea");
             this.cmd.setAttribute("class", "terminal");
@@ -159,25 +166,26 @@
                 //console.log(msg);
                 if (msg.isJson()) msg = JSON.parse(msg);
                 space = space || '';
-                let twospace = space + "   ";
+                let twospace = space + this.tab;
 
-                switch(toString.call(msg)) {
+                switch(Object.prototype.toString.call(msg)) {
                     case '[object Array]':
-                        space += "   ";
+                        space += this.tab;
                         this.execute('[', true, space);
-                        twospace = space + "   ";
+                        twospace = space + this.tab;
                         msg.forEach(elem => {
-                            this.execute(elem, true, twospace);
+                            this.execute(elem, true, space);
                         });
                         this.execute(']', true, space);
                     break;
                     case '[object Object]':
-                        space += "   ";
+                        space += this.tab;
                         this.execute('{', true, space);
-                        twospace = space + "   ";
+                        twospace = space + this.tab;
                         for (let elem in msg) {
                             if (toString.call(msg[elem]) != '[object Function]') this.execute(elem + ': ', true, twospace)
-                            if (toString.call(msg[elem]) == '[object String]' || toString.call(msg[elem] == '[object Number]')) {
+                            if (Object.prototype.toString.call(msg[elem]) == '[object String]' ||
+                                Object.prototype.toString.call(msg[elem]) == '[object Number]') {
                                 this.execute(msg[elem], true, '', true);
                             } else {
                                 this.execute(msg[elem], true, space, true);
