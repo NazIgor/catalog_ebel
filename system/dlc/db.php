@@ -23,7 +23,7 @@
             -> cache()
             -> get(__CLASS__);
 
-			$obj -> db = new mysqli('localhost',  'ebel',  'ebel', 'ebel');
+			$obj -> db = !empty($obj -> db) ? $obj -> db : new mysqli('localhost',  'ebel',  'ebel', 'ebel');
 
             if ($obj -> db -> connect_error)
             {

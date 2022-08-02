@@ -23,7 +23,7 @@
                         echo '<link href="build/static/css/'.$path.'" rel="stylesheet">';
                     break;
                     case "js":
-                        echo '<script src="build/static/js/'.$path.'" crossorigin></script>';
+                        echo '<script src="build/static/js/'.$path.'" crossorigin defer></script>';
                     break;
                 }
             }
