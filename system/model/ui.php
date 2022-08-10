@@ -72,6 +72,7 @@
             
             foreach($data['langs'] as $lang)
             {
+                $lang = (array)$lang;
                 $res = Main :: $obj -> db()
                                     -> write('locale', ['target_id'    => $id,
                                                         'target_table' => 'ui',

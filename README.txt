@@ -16,10 +16,11 @@ description controllers
 #synchronize
     {synchronize: {action: "load || synch"}};
 
-#catalog read write
-    {catalog: {action: "read || write", (не обязательный параметр)id: "int.id"}};
 #catalog delete
     {catalog: {action: "del", id = "int.id", target = "cat||subCat"};
 
 #catalog // Получение массива всех каталогов и подкаталогов
-    {catalog: {action: "all"}}
+    {catalog: {action: "read"}}
+
+#catalog // Добавление каталога / сабкаталога
+    {catalog: {action: "write", langs: [{id: int(id_language), value: 'string'}], img_cat: str(path), sort_cat: int(0-1000)}

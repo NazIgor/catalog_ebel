@@ -25,31 +25,11 @@
             $this -> alert('error query: '.serialize($data));
         }
 
-        private function read($data)
+        private function read($id = FALSE)
         {
-            if (@$data -> id)
-            {
-                $res = Main :: $obj -> db()
-                                    -> read('sub_catalog')
-                                    -> where('catalog='.$data -> id)
-                                    -> execute();
-            }
-            else
-            {
-                $res = Main :: $obj -> db()
-                                    -> read('catalogs')
-                                    -> execute();
-            }
 
-            if (@$res['read'] === 'error') $this -> alert('catalog read error');
-            
-            $this -> cout($res);
-        }
-
-        private function all()
-        {
-            $catalogs = $this->catalogs()->get_catalog();
-            $sub_catalogs = $this->catalogs()->get_sub_catalog();
+            $catalogs = $this->catalogs()->get_catalog($id);
+            $sub_catalogs = $this->catalogs()->get_sub_catalog($id);
             
             $result = [];
             foreach($catalogs as $catalog)
@@ -114,27 +94,61 @@
 
         private function write($data)
         {
-            $query = (array)$data;
-            unset($query['action']);
-            unset($query['id']);
+            $data = (array)$data;
 
-            if (@$data -> id)
+            if (empty($data)) {
+                $this->alert('error data');
+            }
+            unset($data['action']);
+
+            $query_add_catalog = [];
+
+            if (empty($data['id']))
             {
-                $query['catalog'] = $data -> id;
-                $table = 'sub_catalog';
+                $table = 'catalogs';
+                if (empty($data['image_cat'])) $data['image_cat'] = '';
+                if (empty($data['sort_cat'])) $data['sort_cat'] = 1000;
+
+                $query_add_catalog = [
+                    'image_cat' => $data['image_cat'],
+                    'sort_cat'  => $data['sort_cat']
+                ];
             }
             else
             {
-                $table = 'catalogs';
+                $table = 'sub_catalog';
+                if (empty($data['image_subcat'])) $data['image_subcat'] = '';
+                if (empty($data['sort_surcat'])) $data['sort_subcat'] = 1000;
+
+                $query_add_catalog = [
+                    'image_subcat' => $data['image_subcat'],
+                    'sort_subcat'  => $data['sort_subcat'],
+                    'catalog'      => $data['id']
+                ];
             }
 
-            $res = Main :: $obj -> db()
-                                -> write($table, $query)
-                                -> execute();
+            $id_catalog = Main :: $obj -> db()
+                                       -> write($table, $query_add_catalog)
+                                       -> execute()['write'];
 
-            if (@$res['write'] === 'error') $this -> alert('data write error');
+            if ($id_catalog === 'error') $this->alert('error add catalog');
 
-            $this -> read($data);
+            foreach($data['langs'] as $lng)
+            {
+                $lng = (array)$lng;
+                $query_language = [
+                    'target_id'    => $id_catalog,
+                    'target_table' => $table,
+                    'language'     => $lng['id'],
+                    'value'        => $lng['value']
+                ];
+                
+                if (Main :: $obj -> db()
+                                 -> write('locale', $query_language)
+                                 -> execute()['write'] !== 'error') $this->read($id_catalog);
+
+            }
+
         }
 
         private function del($data)
